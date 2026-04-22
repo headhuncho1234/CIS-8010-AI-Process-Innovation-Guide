@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIS 8010 AI Process Innovation</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" content="#2c4e8a" />
+  <link rel="icon" href="./icon-192.svg" type="image/svg+xml" />
+  <style>
+    :root { color-scheme: light; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+    body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: #fafaf7; color: #1a1a1a; line-height: 1.55; margin: 0; padding: 0 16px 80px; }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    header { padding: 28px 0 16px; border-bottom: 2px solid #111; margin-bottom: 16px; }
+    h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+    .sub { color: #555; font-size: 14px; }
+    .toc { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin: 16px 0 20px; font-size: 14px; }
+    .toc a { display: inline-block; margin: 2px 10px 2px 0; color: #0b5fb0; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    #search { width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid #bbb; border-radius: 6px; margin-bottom: 12px; background: #fff; }
+    details { background: #fff; border: 1px solid #d8d8d0; border-radius: 10px; margin: 14px 0; padding: 0; overflow: hidden; }
+    details[open] { border-color: #2c4e8a; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    summary { padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; background: #f0efe8; border-bottom: 1px solid transparent; user-select: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: '▶'; display: inline-block; margin-right: 10px; font-size: 11px; transition: transform 0.15s; color: #2c4e8a; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details[open] summary { border-bottom: 1px solid #d8d8d0; background: #e8ecf5; }
+    .body { padding: 18px 22px 22px; }
+    h2 { font-size: 20px; margin: 24px 0 8px; color: #2c4e8a; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+    h3 { font-size: 16px; margin: 18px 0 6px; color: #1a1a1a; }
+    h4 { font-size: 14px; margin: 14px 0 4px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+    p { margin: 8px 0; }
+    ul, ol { margin: 6px 0 10px; padding-left: 22px; }
+    li { margin: 3px 0; }
+    .def { background: #f7f4e8; border-left: 4px solid #b58900; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 15px; }
+    .def .term { font-weight: 700; color: #704600; }
+    .verbatim { background: #fff9e6; border-left: 4px solid #e0a800; padding: 10px 14px; margin: 10px 0; font-style: italic; border-radius: 0 6px 6px 0; }
+    .trap { background: #ffe8e0; border: 1px solid #ff5722; border-left: 6px solid #d13915; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+    .trap .label { display: inline-block; background: #d13915; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .repeated { background: #eef6ff; border-left: 4px solid #1976d2; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+    .repeated .label { display: inline-block; background: #1976d2; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .cram { background: #fff3d6; border: 2px solid #d69800; border-radius: 10px; padding: 18px 22px; margin: 10px 0 22px; }
+    .cram h2 { color: #704600; border-bottom: 1px solid #d69800; margin-top: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+    th, td { padding: 8px 10px; border: 1px solid #d8d8d0; text-align: left; vertical-align: top; }
+    th { background: #f0efe8; font-weight: 600; }
+    .flash { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin: 10px 0; border: 1px solid #d8d8d0; border-radius: 6px; overflow: hidden; }
+    .flash div { padding: 10px 14px; }
+    .flash div:first-child { background: #f0efe8; font-weight: 600; border-right: 1px solid #d8d8d0; }
+    code, .kbd { background: #eee; padding: 1px 5px; border-radius: 3px; font-family: SF Mono, Menlo, Consolas, monospace; font-size: 13px; }
+    .formula { background: #f2f7f2; border-left: 4px solid #388e3c; padding: 10px 14px; margin: 10px 0; font-family: SF Mono, Menlo, Consolas, monospace; font-size: 14px; border-radius: 0 6px 6px 0; }
+    .pill { display: inline-block; background: #2c4e8a; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; letter-spacing: 0.04em; }
+    .pill.pq { background: #6a3b9a; }
+    .q { background: #f3f0f7; border-left: 4px solid #6a3b9a; padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+    .q .qnum { font-weight: 700; color: #4a2877; margin-right: 6px; }
+    .answer { font-size: 13px; color: #555; margin-top: 6px; display: none; }
+    .answer.show { display: block; }
+    .toggle-btn { background: #6a3b9a; color: #fff; border: none; padding: 4px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 6px; font-weight: 600; }
+    .toggle-btn:hover { background: #4a2877; }
+    .hidden { display: none !important; }
+    .highlight { background: #fff700; padding: 1px 3px; border-radius: 2px; }
+    .badge-reminder { display: inline-block; background: #d13915; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+    hr.divider { border: none; border-top: 1px dashed #bbb; margin: 18px 0; }
+    .footer-note { color: #777; font-size: 12px; text-align: center; margin-top: 30px; padding-top: 12px; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>CIS 8010 AI Process Innovation</h1>
+    <div class="sub">Cumulative Exam Study Guide — Prof. Gregory Gimpel — Georgia State University<br><strong>Note:</strong> Gimpel tests definitions verbatim. Legend: <span class="badge-reminder">EXAM TRAP</span> <span class="pill">REPEATED</span> <span class="pill pq">PRACTICE Q</span></div>
+  </header>
+
+  <input type="text" id="search" placeholder="Search any term, concept, or acronym (e.g., DMAIC, boundary event, platform...)" oninput="filterContent(this.value)">
+
+  <div class="toc">
+    <strong>Jump to:</strong>
+    <a href="#cram">One-Page Cram Sheet</a>
+    <a href="#c1">Class 1 BPMN</a>
+    <a href="#c2">Class 2 Lean Six Sigma</a>
+    <a href="#c3">Class 3 BPM RPA AI</a>
+    <a href="#c4">Class 4 Agentic AI IPA</a>
+    <a href="#c5">Class 5 Service Thinking</a>
+    <a href="#c6">Class 6 Digital Transformation</a>
+    <a href="#traps">Master Trap List</a>
+    <a href="#practice">Practice Quiz</a>
+  </div>
+
+  <section id="cram" class="cram">
+    <h2 style="margin-top:0">One-Page Cram Sheet — The Highest-Yield 20</h2>
+    <p style="margin-top:0"><strong>Read this twice the morning of the exam.</strong> If you only have 20 minutes, you have this.</p>
+    <h3>Gimpel's Universal Themes</h3>
+    <ul>
+      <li><strong>You don't get paid for what you do. You get paid for the value you create.</strong> <span class="pill">REPEATED</span></li>
+      <li><strong>Automating tasks DOES NOT change the process.</strong> <span class="pill">REPEATED</span></li>
+      <li><strong>A business = a collection of processes + the resources that make them possible.</strong></li>
+      <li><strong>Problem-to-Be-Solved (PTBS):</strong> the elemental core reason the service is valuable to the consumer.</li>
+      <li><strong>Outside-in thinking</strong> focuses on solving customer problems instead of internal operations.</li>
+    </ul>
+    <h3>BPMN Must-Memorize</h3>
+    <ul>
+      <li><strong>3 basic shapes:</strong> Activities = rounded rectangle, Events = circle, Gateways = diamond.</li>
+      <li><strong>Task vs. Event:</strong> You assign tasks. Events just happen.</li>
+      <li><strong>Event borders:</strong> Start = thin, Intermediate = double, End = thick.</li>
+      <li><strong>Throwing vs. Catching:</strong> Throwing is filled; catching is not filled.</li>
+      <li><strong>Messages only between pools.</strong> A process cannot jump pools.</li>
+    </ul>
+    <h3>Lean Six Sigma Must-Memorize</h3>
+    <ul>
+      <li><strong>Lean:</strong> maximize customer value while minimizing waste.</li>
+      <li><strong>Waste test:</strong> if the customer will not pay for it, it is waste.</li>
+      <li><strong>DOWNTIME:</strong> Defects, Overproduction, Waiting, Non-value-added processing, Transportation, Inventory, Motion, Employees underutilized.</li>
+      <li><strong>DMAIC:</strong> Define, Measure, Analyze, Improve, Control.</li>
+      <li><strong>Lean reduces waste; Six Sigma reduces variability.</strong></li>
+    </ul>
+    <h3>AI & Digital Must-Memorize</h3>
+    <ul>
+      <li><strong>RPA is not AI.</strong> Rules engines are preprogrammed.</li>
+      <li><strong>Intelligent Automation = RPA + decision-making AI.</strong></li>
+      <li><strong>Agentic AI:</strong> AI can act autonomously toward goals.</li>
+      <li><strong>RAG:</strong> LLM uses external data beyond original training data.</li>
+      <li><strong>First-Mover Advantage is a myth.</strong> <span class="badge-reminder">TRAP</span></li>
+    </ul>
+  </section>
+
+  <details id="c1" open>
+    <summary>Class 1 Problem-to-be-Solved, Business Processes &amp; BPMN</summary>
+    <div class="body">
+      <h2>1.1 Problem-to-be-Solved (PTBS)</h2>
+      <div class="def"><span class="term">PTBS:</span> The elemental core reason the service is valuable to the consumer of the service.</div>
+      <div class="repeated"><span class="label">Repeated</span>You don't get paid for what you do. You get paid for the value you create.</div>
+      <h2>1.2 Business Processes</h2>
+      <div class="def"><span class="term">Business:</span> A business is a collection of processes and the resources that make those processes possible.</div>
+      <div class="repeated"><span class="label">Repeated</span>Improving processes will improve a business. Transforming processes will transform a business.</div>
+      <h2>1.3 BPMN</h2>
+      <div class="verbatim">A given BPMN diagram should have one and only one interpretation.</div>
+      <table>
+        <tr><th>Shape</th><th>Definition</th></tr>
+        <tr><td>Activity</td><td>A step in the process. Represents work/action performed.</td></tr>
+        <tr><td>Event</td><td>A signal that something has happened.</td></tr>
+        <tr><td>Gateway</td><td>Controls flow branching, merging, and parallel actions.</td></tr>
+      </table>
+      <div class="trap"><span class="label">Trap</span>Messages flow only between pools. A process cannot jump across pools.</div>
+    </div>
+  </details>
+
+  <details id="c2" open>
+    <summary>Class 2 Lean Six Sigma Process Improvement</summary>
+    <div class="body">
+      <h2>2.1 Lean Core Concept</h2>
+      <div class="def"><span class="term">Lean:</span> Maximize customer value while minimizing waste.</div>
+      <h2>2.2 Waste</h2>
+      <div class="def"><span class="term">Waste:</span> Anything other than the minimum amount of resources absolutely essential to add value.</div>
+      <h2>2.3 DOWNTIME</h2>
+      <table>
+        <tr><th>Letter</th><th>Category</th></tr>
+        <tr><td>D</td><td>Defects</td></tr>
+        <tr><td>O</td><td>Overproduction</td></tr>
+        <tr><td>W</td><td>Waiting</td></tr>
+        <tr><td>N</td><td>Non-value-added processing</td></tr>
+        <tr><td>T</td><td>Transportation</td></tr>
+        <tr><td>I</td><td>Inventory</td></tr>
+        <tr><td>M</td><td>Motion</td></tr>
+        <tr><td>E</td><td>Employees underutilized</td></tr>
+      </table>
+      <h2>2.4 DMAIC</h2>
+      <div class="formula">Define → Measure → Analyze → Improve → Control</div>
+      <div class="trap"><span class="label">Trap</span>Lean and Six Sigma are used in tandem, not combined.</div>
+    </div>
+  </details>
+
+  <details id="c3" open>
+    <summary>Class 3 Digital BPM, RPA, AI, GANs &amp; RAG</summary>
+    <div class="body">
+      <h2>3.1 BPM</h2>
+      <div class="def"><span class="term">BPM:</span> A discipline that discovers, models, analyzes, measures, improves, and optimizes business processes.</div>
+      <h2>3.2 RPA</h2>
+      <div class="def"><span class="term">RPA:</span> Use of bots or call activities to perform automated tasks.</div>
+      <div class="trap"><span class="label">Trap</span>Rules engines are not AI. Automating tasks does not change the process.</div>
+      <h2>3.3 AI</h2>
+      <div class="def"><span class="term">AI:</span> Machine behavior and function that exhibits the intelligence and behavior of humans.</div>
+      <h2>3.4 Generative AI and RAG</h2>
+      <div class="def"><span class="term">Generative AI:</span> Trainable algorithms that create new content.</div>
+      <div class="def"><span class="term">RAG:</span> Retrieval-Augmented Generation lets an LLM reference additional data beyond its training set.</div>
+    </div>
+  </details>
+
+  <details id="c4" open>
+    <summary>Class 4 Agentic AI &amp; Intelligent Process Automation</summary>
+    <div class="body">
+      <h2>4.1 Intelligent Automation</h2>
+      <div class="def"><span class="term">Intelligent Automation:</span> RPA with decision-making AI.</div>
+      <h2>4.2 Agentic AI</h2>
+      <div class="def"><span class="term">Agentic AI:</span> An AI system designed to understand complex workflows and achieve goals autonomously with little to no human intervention.</div>
+      <h2>4.3 Agentic Characteristics</h2>
+      <table>
+        <tr><th>Characteristic</th><th>Definition</th></tr>
+        <tr><td>Autonomy</td><td>Chooses steps to pursue goals without human supervision.</td></tr>
+        <tr><td>Adaptive learning</td><td>Learns from interactions and updates strategies over time.</td></tr>
+        <tr><td>Workflow optimization</td><td>Optimizes workflows and business processes.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details id="c5" open>
+    <summary>Class 5 Service Thinking</summary>
+    <div class="body">
+      <h2>5.1 Service-Dominant Logic</h2>
+      <div class="def"><span class="term">Service-Dominant Logic:</span> Value is co-created through collaborative processes between providers and customers.</div>
+      <h2>5.2 PTBS and Jobs To Be Done</h2>
+      <div class="repeated"><span class="label">Repeated</span>PTBS is equivalent to the idea of a job to be done.</div>
+      <h2>5.3 Outside-In Thinking</h2>
+      <div class="def"><span class="term">Outside-In:</span> Focus on the customer problem instead of internal operations.</div>
+    </div>
+  </details>
+
+  <details id="c6" open>
+    <summary>Class 6 Digital Transformation</summary>
+    <div class="body">
+      <h2>6.1 Five Digital Forces</h2>
+      <ul>
+        <li>Globalization</li>
+        <li>Millennialization</li>
+        <li>Prosumerization</li>
+        <li>Virtualization</li>
+        <li>Platformization</li>
+      </ul>
+      <h2>6.2 Platform Definition</h2>
+      <div class="def"><span class="term">Platform:</span> An open architecture with a governance model designed to facilitate interactions.</div>
+      <h2>6.3 Winner-Takes-All</h2>
+      <div class="trap"><span class="label">Trap</span>Requires all four: high economies of scale, strong network effects, low demand for differentiated features, and high multi-homing costs.</div>
+      <h2>6.4 Digital Mastery</h2>
+      <div class="repeated"><span class="label">Repeated</span>Two critical success factors: digital capabilities and leadership.</div>
+    </div>
+  </details>
+
+  <section id="traps">
+    <h2>Master Trap List</h2>
+    <div class="trap"><span class="label">Exam Trap</span>Gateways do not make decisions; they only route based on previous data or decisions.</div>
+    <div class="trap"><span class="label">Exam Trap</span>Never send messages within a pool.</div>
+    <div class="trap"><span class="label">Exam Trap</span>RPA is not AI.</div>
+    <div class="trap"><span class="label">Exam Trap</span>Automating tasks does not change the process.</div>
+    <div class="trap"><span class="label">Exam Trap</span>First-Mover Advantage is a myth.</div>
+  </section>
+
+  <section id="practice">
+    <h2>Practice Quiz</h2>
+    <div class="q"><span class="qnum">Q1.</span>What does DMAIC stand for?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">Define, Measure, Analyze, Improve, Control.</div></div>
+    <div class="q"><span class="qnum">Q2.</span>What is the difference between Lean and Six Sigma?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">Lean reduces waste; Six Sigma reduces variability.</div></div>
+    <div class="q"><span class="qnum">Q3.</span>Is RPA the same as AI?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">No. Rules engines are preprogrammed and are not AI.</div></div>
+  </section>
+
+  <div class="footer-note">Offline-ready PWA study guide.</div>
+</div>
+
+<script>
+function filterContent(query) {
+  const q = query.trim().toLowerCase();
+  document.querySelectorAll('details').forEach(section => {
+    const match = section.textContent.toLowerCase().includes(q);
+    section.classList.toggle('hidden', q && !match);
+    if (q && match) section.open = true;
+  });
+}
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  answer.classList.toggle('show');
+  btn.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
