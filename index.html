@@ -1,280 +1,1358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CIS 8010 AI Process Innovation</title>
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <meta name="theme-color" content="#2c4e8a" />
-  <link rel="icon" href="./icon-192.svg" type="image/svg+xml" />
-  <style>
-    :root { color-scheme: light; box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
-    body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: #fafaf7; color: #1a1a1a; line-height: 1.55; margin: 0; padding: 0 16px 80px; }
-    .wrap { max-width: 960px; margin: 0 auto; }
-    header { padding: 28px 0 16px; border-bottom: 2px solid #111; margin-bottom: 16px; }
-    h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
-    .sub { color: #555; font-size: 14px; }
-    .toc { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin: 16px 0 20px; font-size: 14px; }
-    .toc a { display: inline-block; margin: 2px 10px 2px 0; color: #0b5fb0; text-decoration: none; }
-    .toc a:hover { text-decoration: underline; }
-    #search { width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid #bbb; border-radius: 6px; margin-bottom: 12px; background: #fff; }
-    details { background: #fff; border: 1px solid #d8d8d0; border-radius: 10px; margin: 14px 0; padding: 0; overflow: hidden; }
-    details[open] { border-color: #2c4e8a; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
-    summary { padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; background: #f0efe8; border-bottom: 1px solid transparent; user-select: none; }
-    summary::-webkit-details-marker { display: none; }
-    summary::before { content: '▶'; display: inline-block; margin-right: 10px; font-size: 11px; transition: transform 0.15s; color: #2c4e8a; }
-    details[open] summary::before { transform: rotate(90deg); }
-    details[open] summary { border-bottom: 1px solid #d8d8d0; background: #e8ecf5; }
-    .body { padding: 18px 22px 22px; }
-    h2 { font-size: 20px; margin: 24px 0 8px; color: #2c4e8a; border-bottom: 1px solid #eee; padding-bottom: 4px; }
-    h3 { font-size: 16px; margin: 18px 0 6px; color: #1a1a1a; }
-    h4 { font-size: 14px; margin: 14px 0 4px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
-    p { margin: 8px 0; }
-    ul, ol { margin: 6px 0 10px; padding-left: 22px; }
-    li { margin: 3px 0; }
-    .def { background: #f7f4e8; border-left: 4px solid #b58900; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 15px; }
-    .def .term { font-weight: 700; color: #704600; }
-    .verbatim { background: #fff9e6; border-left: 4px solid #e0a800; padding: 10px 14px; margin: 10px 0; font-style: italic; border-radius: 0 6px 6px 0; }
-    .trap { background: #ffe8e0; border: 1px solid #ff5722; border-left: 6px solid #d13915; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; }
-    .trap .label { display: inline-block; background: #d13915; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .repeated { background: #eef6ff; border-left: 4px solid #1976d2; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; }
-    .repeated .label { display: inline-block; background: #1976d2; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .cram { background: #fff3d6; border: 2px solid #d69800; border-radius: 10px; padding: 18px 22px; margin: 10px 0 22px; }
-    .cram h2 { color: #704600; border-bottom: 1px solid #d69800; margin-top: 8px; }
-    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
-    th, td { padding: 8px 10px; border: 1px solid #d8d8d0; text-align: left; vertical-align: top; }
-    th { background: #f0efe8; font-weight: 600; }
-    .flash { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin: 10px 0; border: 1px solid #d8d8d0; border-radius: 6px; overflow: hidden; }
-    .flash div { padding: 10px 14px; }
-    .flash div:first-child { background: #f0efe8; font-weight: 600; border-right: 1px solid #d8d8d0; }
-    code, .kbd { background: #eee; padding: 1px 5px; border-radius: 3px; font-family: SF Mono, Menlo, Consolas, monospace; font-size: 13px; }
-    .formula { background: #f2f7f2; border-left: 4px solid #388e3c; padding: 10px 14px; margin: 10px 0; font-family: SF Mono, Menlo, Consolas, monospace; font-size: 14px; border-radius: 0 6px 6px 0; }
-    .pill { display: inline-block; background: #2c4e8a; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; letter-spacing: 0.04em; }
-    .pill.pq { background: #6a3b9a; }
-    .q { background: #f3f0f7; border-left: 4px solid #6a3b9a; padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; }
-    .q .qnum { font-weight: 700; color: #4a2877; margin-right: 6px; }
-    .answer { font-size: 13px; color: #555; margin-top: 6px; display: none; }
-    .answer.show { display: block; }
-    .toggle-btn { background: #6a3b9a; color: #fff; border: none; padding: 4px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 6px; font-weight: 600; }
-    .toggle-btn:hover { background: #4a2877; }
-    .hidden { display: none !important; }
-    .highlight { background: #fff700; padding: 1px 3px; border-radius: 2px; }
-    .badge-reminder { display: inline-block; background: #d13915; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
-    hr.divider { border: none; border-top: 1px dashed #bbb; margin: 18px 0; }
-    .footer-note { color: #777; font-size: 12px; text-align: center; margin-top: 30px; padding-top: 12px; border-top: 1px solid #eee; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIS 8010 Cumulative Exam Study Guide — Prof. Gimpel, GSU</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fafaf7;
+  color: #1a1a1a;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 16px 80px;
+}
+.wrap { max-width: 960px; margin: 0 auto; }
+header {
+  padding: 28px 0 16px;
+  border-bottom: 2px solid #111;
+  margin-bottom: 16px;
+}
+h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+.sub { color: #555; font-size: 14px; }
+.toc {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+.toc a { display: inline-block; margin: 2px 10px 2px 0; color: #0b5fb0; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+#search {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+details {
+  background: #fff;
+  border: 1px solid #d8d8d0;
+  border-radius: 10px;
+  margin: 14px 0;
+  padding: 0;
+  overflow: hidden;
+}
+details[open] { border-color: #2c4e8a; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+summary {
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+  list-style: none;
+  background: #f0efe8;
+  border-bottom: 1px solid transparent;
+  user-select: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 11px;
+  transition: transform 0.15s;
+  color: #2c4e8a;
+}
+details[open] > summary::before { transform: rotate(90deg); }
+details[open] > summary { border-bottom: 1px solid #d8d8d0; background: #e8ecf5; }
+.body { padding: 18px 22px 22px; }
+h2 { font-size: 20px; margin: 24px 0 8px; color: #2c4e8a; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+h3 { font-size: 16px; margin: 18px 0 6px; color: #1a1a1a; }
+h4 { font-size: 14px; margin: 14px 0 4px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 8px 0; }
+ul, ol { margin: 6px 0 10px; padding-left: 22px; }
+li { margin: 3px 0; }
+.def {
+  background: #f7f4e8;
+  border-left: 4px solid #b58900;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 15px;
+}
+.def .term { font-weight: 700; color: #704600; }
+.verbatim {
+  background: #fff9e6;
+  border-left: 4px solid #e0a800;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-style: italic;
+  border-radius: 0 6px 6px 0;
+}
+.trap {
+  background: #ffe8e0;
+  border: 1px solid #ff5722;
+  border-left: 6px solid #d13915;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+}
+.trap .label { display: inline-block; background: #d13915; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.repeated {
+  background: #eef6ff;
+  border-left: 4px solid #1976d2;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 0 6px 6px 0;
+}
+.repeated .label { display: inline-block; background: #1976d2; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.cram {
+  background: #fff3d6;
+  border: 2px solid #d69800;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 10px 0 22px;
+}
+.cram h2 { color: #704600; border-bottom: 1px solid #d69800; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+th, td { padding: 8px 10px; border: 1px solid #d8d8d0; text-align: left; vertical-align: top; }
+th { background: #f0efe8; font-weight: 600; }
+.flash { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin: 10px 0; border: 1px solid #d8d8d0; border-radius: 6px; overflow: hidden; }
+.flash > div { padding: 10px 14px; }
+.flash > div:first-child { background: #f0efe8; font-weight: 600; border-right: 1px solid #d8d8d0; }
+code, .kbd { background: #eee; padding: 1px 5px; border-radius: 3px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
+.formula { background: #f2f7f2; border-left: 4px solid #388e3c; padding: 10px 14px; margin: 10px 0; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; border-radius: 0 6px 6px 0; }
+.pill { display: inline-block; background: #2c4e8a; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; letter-spacing: 0.04em; }
+.pill.pq { background: #6a3b9a; }
+.q { background: #f3f0f7; border-left: 4px solid #6a3b9a; padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+.q .qnum { font-weight: 700; color: #4a2877; margin-right: 6px; }
+.answer { font-size: 13px; color: #555; margin-top: 6px; display: none; }
+.answer.show { display: block; }
+.toggle-btn { background: #6a3b9a; color: #fff; border: none; padding: 4px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 6px; font-weight: 600; }
+.toggle-btn:hover { background: #4a2877; }
+.hidden { display: none !important; }
+.highlight { background: #fff700; padding: 1px 3px; border-radius: 2px; }
+.badge-reminder { display: inline-block; background: #d13915; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+hr.divider { border: none; border-top: 1px dashed #bbb; margin: 18px 0; }
+.footer-note { color: #777; font-size: 12px; text-align: center; margin-top: 30px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>CIS 8010 AI Process Innovation</h1>
-    <div class="sub">Cumulative Exam Study Guide — Prof. Gregory Gimpel — Georgia State University<br><strong>Note:</strong> Gimpel tests definitions verbatim. Legend: <span class="badge-reminder">EXAM TRAP</span> <span class="pill">REPEATED</span> <span class="pill pq">PRACTICE Q</span></div>
-  </header>
+<header>
+<h1>CIS 8010 — AI Process Innovation</h1>
+<div class="sub">Cumulative Exam Study Guide · Prof. Gregory Gimpel · Georgia State University<br>
+<strong>Note:</strong> Gimpel tests definitions verbatim. Legend:
+<span class="badge-reminder">EXAM TRAP</span>
+<span class="pill">REPEATED</span>
+<span class="pill pq">PRACTICE Q</span>
+</div>
+</header>
 
-  <input type="text" id="search" placeholder="Search any term, concept, or acronym (e.g., DMAIC, boundary event, platform...)" oninput="filterContent(this.value)">
+<input type="text" id="search" placeholder="🔍 Search any term, concept, or acronym (e.g., 'DMAIC', 'boundary event', 'platform')..."
+  oninput="filterContent(this.value)">
 
-  <div class="toc">
-    <strong>Jump to:</strong>
-    <a href="#cram">One-Page Cram Sheet</a>
-    <a href="#c1">Class 1 BPMN</a>
-    <a href="#c2">Class 2 Lean Six Sigma</a>
-    <a href="#c3">Class 3 BPM RPA AI</a>
-    <a href="#c4">Class 4 Agentic AI IPA</a>
-    <a href="#c5">Class 5 Service Thinking</a>
-    <a href="#c6">Class 6 Digital Transformation</a>
-    <a href="#traps">Master Trap List</a>
-    <a href="#practice">Practice Quiz</a>
-  </div>
+<div class="toc">
+<strong>Jump to:</strong>
+<a href="#cram">🔥 One-Page Cram Sheet</a>
+<a href="#c1">Class 1 — BPMN</a>
+<a href="#c2">Class 2 — Lean Six Sigma</a>
+<a href="#c3">Class 3 — BPM / RPA / AI</a>
+<a href="#c4">Class 4 — Agentic AI / IPA</a>
+<a href="#c5">Class 5 — Service Thinking</a>
+<a href="#c6">Class 6 — Digital Transformation</a>
+<a href="#traps">⚠️ Master Trap List</a>
+<a href="#practice">🧠 Practice Quiz</a>
+</div>
 
-  <section id="cram" class="cram">
-    <h2 style="margin-top:0">One-Page Cram Sheet — The Highest-Yield 20</h2>
-    <p style="margin-top:0"><strong>Read this twice the morning of the exam.</strong> If you only have 20 minutes, you have this.</p>
-    <h3>Gimpel's Universal Themes</h3>
-    <ul>
-      <li><strong>You don't get paid for what you do. You get paid for the value you create.</strong> <span class="pill">REPEATED</span></li>
-      <li><strong>Automating tasks DOES NOT change the process.</strong> <span class="pill">REPEATED</span></li>
-      <li><strong>A business = a collection of processes + the resources that make them possible.</strong></li>
-      <li><strong>Problem-to-Be-Solved (PTBS):</strong> the elemental core reason the service is valuable to the consumer.</li>
-      <li><strong>Outside-in thinking</strong> focuses on solving customer problems instead of internal operations.</li>
-    </ul>
-    <h3>BPMN Must-Memorize</h3>
-    <ul>
-      <li><strong>3 basic shapes:</strong> Activities = rounded rectangle, Events = circle, Gateways = diamond.</li>
-      <li><strong>Task vs. Event:</strong> You assign tasks. Events just happen.</li>
-      <li><strong>Event borders:</strong> Start = thin, Intermediate = double, End = thick.</li>
-      <li><strong>Throwing vs. Catching:</strong> Throwing is filled; catching is not filled.</li>
-      <li><strong>Messages only between pools.</strong> A process cannot jump pools.</li>
-    </ul>
-    <h3>Lean Six Sigma Must-Memorize</h3>
-    <ul>
-      <li><strong>Lean:</strong> maximize customer value while minimizing waste.</li>
-      <li><strong>Waste test:</strong> if the customer will not pay for it, it is waste.</li>
-      <li><strong>DOWNTIME:</strong> Defects, Overproduction, Waiting, Non-value-added processing, Transportation, Inventory, Motion, Employees underutilized.</li>
-      <li><strong>DMAIC:</strong> Define, Measure, Analyze, Improve, Control.</li>
-      <li><strong>Lean reduces waste; Six Sigma reduces variability.</strong></li>
-    </ul>
-    <h3>AI & Digital Must-Memorize</h3>
-    <ul>
-      <li><strong>RPA is not AI.</strong> Rules engines are preprogrammed.</li>
-      <li><strong>Intelligent Automation = RPA + decision-making AI.</strong></li>
-      <li><strong>Agentic AI:</strong> AI can act autonomously toward goals.</li>
-      <li><strong>RAG:</strong> LLM uses external data beyond original training data.</li>
-      <li><strong>First-Mover Advantage is a myth.</strong> <span class="badge-reminder">TRAP</span></li>
-    </ul>
-  </section>
+<!-- ========== CRAM SHEET ========== -->
+<section id="cram" class="cram">
+<h2 style="margin-top:0;">🔥 One-Page Cram Sheet — The Highest-Yield 20%</h2>
+<p style="margin-top:0;"><strong>Read this twice the morning of the exam.</strong> If you only have 20 minutes, you have this.</p>
 
-  <details id="c1" open>
-    <summary>Class 1 Problem-to-be-Solved, Business Processes &amp; BPMN</summary>
-    <div class="body">
-      <h2>1.1 Problem-to-be-Solved (PTBS)</h2>
-      <div class="def"><span class="term">PTBS:</span> The elemental core reason the service is valuable to the consumer of the service.</div>
-      <div class="repeated"><span class="label">Repeated</span>You don't get paid for what you do. You get paid for the value you create.</div>
-      <h2>1.2 Business Processes</h2>
-      <div class="def"><span class="term">Business:</span> A business is a collection of processes and the resources that make those processes possible.</div>
-      <div class="repeated"><span class="label">Repeated</span>Improving processes will improve a business. Transforming processes will transform a business.</div>
-      <h2>1.3 BPMN</h2>
-      <div class="verbatim">A given BPMN diagram should have one and only one interpretation.</div>
-      <table>
-        <tr><th>Shape</th><th>Definition</th></tr>
-        <tr><td>Activity</td><td>A step in the process. Represents work/action performed.</td></tr>
-        <tr><td>Event</td><td>A signal that something has happened.</td></tr>
-        <tr><td>Gateway</td><td>Controls flow branching, merging, and parallel actions.</td></tr>
-      </table>
-      <div class="trap"><span class="label">Trap</span>Messages flow only between pools. A process cannot jump across pools.</div>
-    </div>
-  </details>
+<h3>Gimpel's Universal Themes (appear across multiple classes)</h3>
+<ul>
+<li><strong>"You don't get paid for what you do. You get paid for the value you create."</strong> <span class="pill">REPEATED</span> — Classes 1 &amp; 5</li>
+<li><strong>"Automating tasks DOES NOT change the process."</strong> <span class="pill">REPEATED</span> — Classes 3 &amp; 4 (said 4+ times)</li>
+<li><strong>A business = a collection of processes + the resources that make them possible.</strong> Improving processes improves the business; <em>transforming</em> processes <em>transforms</em> the business.</li>
+<li><strong>Problem-to-Be-Solved (PTBS):</strong> The elemental/core reason the service is valuable to the consumer. Often NOT obvious or surface-level.</li>
+<li><strong>Outside-in thinking</strong> focuses on solving customer problems <em>instead of</em> focusing on internal operations.</li>
+</ul>
 
-  <details id="c2" open>
-    <summary>Class 2 Lean Six Sigma Process Improvement</summary>
-    <div class="body">
-      <h2>2.1 Lean Core Concept</h2>
-      <div class="def"><span class="term">Lean:</span> Maximize customer value while minimizing waste.</div>
-      <h2>2.2 Waste</h2>
-      <div class="def"><span class="term">Waste:</span> Anything other than the minimum amount of resources absolutely essential to add value.</div>
-      <h2>2.3 DOWNTIME</h2>
-      <table>
-        <tr><th>Letter</th><th>Category</th></tr>
-        <tr><td>D</td><td>Defects</td></tr>
-        <tr><td>O</td><td>Overproduction</td></tr>
-        <tr><td>W</td><td>Waiting</td></tr>
-        <tr><td>N</td><td>Non-value-added processing</td></tr>
-        <tr><td>T</td><td>Transportation</td></tr>
-        <tr><td>I</td><td>Inventory</td></tr>
-        <tr><td>M</td><td>Motion</td></tr>
-        <tr><td>E</td><td>Employees underutilized</td></tr>
-      </table>
-      <h2>2.4 DMAIC</h2>
-      <div class="formula">Define → Measure → Analyze → Improve → Control</div>
-      <div class="trap"><span class="label">Trap</span>Lean and Six Sigma are used in tandem, not combined.</div>
-    </div>
-  </details>
+<h3>BPMN Must-Memorize</h3>
+<ul>
+<li><strong>3 basic shapes:</strong> Activities (rounded rectangle), Events (circle), Gateways (diamond). Every sequence-flow end must connect to one of these three.</li>
+<li><strong>Task vs. Event:</strong> You assign tasks to people/machines. <em>Events just happen.</em></li>
+<li><strong>Event borders:</strong> Start = thin; Intermediate = double line; End = thick/bold.</li>
+<li><strong>Throwing vs. Catching:</strong> Throwing (sending) = filled/darkened symbol. Catching (receiving) = not filled.</li>
+<li><strong>Gateway types:</strong> XOR = follow only 1 path · OR = follow 1 or more · AND (parallel) = follow ALL, must finish all before continuing · Event-based = follow path triggered by event (only "future-looking" gateway).</li>
+<li><strong>Gateways do NOT make decisions and do NOT allow time to pass.</strong> They direct traffic. Label them as <em>questions</em>; label paths as <em>answers</em>.</li>
+<li><strong>Parallel gateways don't need labels</strong> (all paths are taken — logic is already clear).</li>
+<li><strong>Loops:</strong> Standard loop = same activity repeated until condition true (one at a time). Multi-instance = multiple instances (parallel or sequential) for each item in a collection.</li>
+<li><strong>Boundary events:</strong> Attached to border of an activity. Interrupting = stop current process, follow exception flow only. Non-interrupting = keep current process AND also follow exception flow.</li>
+<li><strong>Pools &amp; messages:</strong> Messages ONLY between pools — never within a pool. Processes CANNOT jump pools.</li>
+<li><strong>Orchestration</strong> = managed flow of control inside a pool (solid arrows). <strong>Choreography</strong> = message flow <em>between</em> pools (dashed arrows with circle).</li>
+</ul>
 
-  <details id="c3" open>
-    <summary>Class 3 Digital BPM, RPA, AI, GANs &amp; RAG</summary>
-    <div class="body">
-      <h2>3.1 BPM</h2>
-      <div class="def"><span class="term">BPM:</span> A discipline that discovers, models, analyzes, measures, improves, and optimizes business processes.</div>
-      <h2>3.2 RPA</h2>
-      <div class="def"><span class="term">RPA:</span> Use of bots or call activities to perform automated tasks.</div>
-      <div class="trap"><span class="label">Trap</span>Rules engines are not AI. Automating tasks does not change the process.</div>
-      <h2>3.3 AI</h2>
-      <div class="def"><span class="term">AI:</span> Machine behavior and function that exhibits the intelligence and behavior of humans.</div>
-      <h2>3.4 Generative AI and RAG</h2>
-      <div class="def"><span class="term">Generative AI:</span> Trainable algorithms that create new content.</div>
-      <div class="def"><span class="term">RAG:</span> Retrieval-Augmented Generation lets an LLM reference additional data beyond its training set.</div>
-    </div>
-  </details>
+<h3>Lean Six Sigma Must-Memorize</h3>
+<ul>
+<li><strong>Lean:</strong> Maximize customer value while minimizing waste.</li>
+<li><strong>Waste (verbatim):</strong> "Anything other than the minimum amount of equipment, materials, parts, space, and worker's time which are absolutely essential to add value to the product."</li>
+<li><strong>Customer-pay test:</strong> If your customer isn't willing to pay extra for it (or choose your product over another), it's waste.</li>
+<li><strong>5 Principles of Lean:</strong> Identify value · Map the value stream · Create flow · Establish pull · Seek perfection.</li>
+<li><strong>DOWNTIME waste:</strong> <u>D</u>efects · <u>O</u>verproduction · <u>W</u>aiting · <u>N</u>on-value-added processing · <u>T</u>ransportation · <u>I</u>nventory · <u>M</u>otion · <u>E</u>mployees underutilized.</li>
+<li><strong>95% of lead time is non-value-added</strong> (only 5% is value-added).</li>
+<li><strong>Push = forecast/schedule-driven, ignoring next operation. Pull = flow based on what next operation needs.</strong></li>
+<li><strong>Takt Time</strong> = Work Time Available ÷ Number of Units Sold (i.e., Demand Rate).</li>
+<li><strong>Six Sigma:</strong> Data-driven methodology for <em>eliminating defects</em> by <em>minimizing variability</em>. 99.9997% = 3.4 DPMO.</li>
+<li><strong>DMAIC:</strong> Define · Measure · Analyze · Improve · Control. Measure &amp; Analyze = "No active manipulation." Improve = "Start active manipulation."</li>
+<li><strong>VOC:</strong> Voice of the Customer — wants/needs, measurable, as target or upper/lower limits. Customer can be internal or external.</li>
+<li><strong>VOP:</strong> Voice of the Process — measures of process outcomes (results).</li>
+<li><strong>Goal of Six Sigma:</strong> Align VOC with VOP 99.9997% of the time.</li>
+<li><strong>Lean vs. Six Sigma:</strong> Lean = reduce waste; Six Sigma = reduce variability. <em>Used in tandem, NOT combined.</em></li>
+</ul>
 
-  <details id="c4" open>
-    <summary>Class 4 Agentic AI &amp; Intelligent Process Automation</summary>
-    <div class="body">
-      <h2>4.1 Intelligent Automation</h2>
-      <div class="def"><span class="term">Intelligent Automation:</span> RPA with decision-making AI.</div>
-      <h2>4.2 Agentic AI</h2>
-      <div class="def"><span class="term">Agentic AI:</span> An AI system designed to understand complex workflows and achieve goals autonomously with little to no human intervention.</div>
-      <h2>4.3 Agentic Characteristics</h2>
-      <table>
-        <tr><th>Characteristic</th><th>Definition</th></tr>
-        <tr><td>Autonomy</td><td>Chooses steps to pursue goals without human supervision.</td></tr>
-        <tr><td>Adaptive learning</td><td>Learns from interactions and updates strategies over time.</td></tr>
-        <tr><td>Workflow optimization</td><td>Optimizes workflows and business processes.</td></tr>
-      </table>
-    </div>
-  </details>
+<h3>AI &amp; Digital Must-Memorize</h3>
+<ul>
+<li><strong>AI:</strong> Machine behavior &amp; function that exhibits the intelligence &amp; behavior of humans.</li>
+<li><strong>Generative AI:</strong> Trainable algorithms that create new content. Learns from existing artifacts to generate realistic new ones at scale that reflect the training data characteristics but don't repeat it.</li>
+<li><strong>GAN (Generative Adversarial Network):</strong> Generative AI creates content; another AI tries to identify it as GenAI-created; feedback loop creates convincing content. Inflection point = 2014.</li>
+<li><strong>RAG (Retrieval-Augmented Generation):</strong> LLM references additional data from a dataset beyond the original training data.</li>
+<li><strong>RPA:</strong> Use of call activities or bots to perform automated tasks. Uses rules engines — <em>not AI</em>. Does NOT delegate critical thinking or decision making.</li>
+<li><strong>Intelligent Automation = RPA + decision-making AI.</strong></li>
+<li><strong>Agentic AI:</strong> AI system designed to understand complex workflows and achieve goals autonomously with little to no human intervention.</li>
+<li><strong>Machine Reengineering:</strong> Two concepts — (1) redesigning processes so humans work with AI agents; (2) AI acts as the business process engineer to optimize processes.</li>
+<li><strong>7Rs of Process Innovation (Shapiro):</strong> Rethink · Reconfigure · Resequence · Relocate · Reduce · Reassign · Retool.</li>
+<li><strong>5 Digital Forces:</strong> Globalization · Millennialization · Prosumerization · Virtualization · Platformization.</li>
+<li><strong>Platform def:</strong> An open architecture with a governance model designed to facilitate interactions.</li>
+<li><strong>Winner-Takes-All requires ALL 4:</strong> High economies of scale · Strong network effects · Low demand for differentiated features · High multi-homing costs.</li>
+<li><strong>First-Mover Advantage is a MYTH.</strong> <span class="badge-reminder">TRAP</span></li>
+<li><strong>4 Monetization Strategies:</strong> Transaction Cut · Charge for Access · Charge for Tools · Charge for Attention.</li>
+<li><strong>2 Critical Success Factors for Digital Transformation:</strong> Digital Capabilities + Leadership.</li>
+<li><strong>Digital Mastery 2x2:</strong> Beginners · Fashionistas · Conservatives · <strong>Digital Masters</strong> (high capabilities + high leadership = +9% revenue, +26% profit).</li>
+<li><strong>5 Business Model Reinvention Archetypes:</strong> Reinvent Industries · Substitute Products or Services · Create New Digital Businesses · Reconfigure Value Delivery · Rethink Value Propositions.</li>
+<li><strong>3 Types of Digital Visions:</strong> Reenvision customer experience · Reenvision operational processes · Reenvision business model.</li>
+<li><strong>4 aspects of Customer Experience Transformation:</strong> Outside-In Design · Increase Reach &amp; Engagement · Data-driven Experience · Seamless Physical-Digital Integration.</li>
+</ul>
 
-  <details id="c5" open>
-    <summary>Class 5 Service Thinking</summary>
-    <div class="body">
-      <h2>5.1 Service-Dominant Logic</h2>
-      <div class="def"><span class="term">Service-Dominant Logic:</span> Value is co-created through collaborative processes between providers and customers.</div>
-      <h2>5.2 PTBS and Jobs To Be Done</h2>
-      <div class="repeated"><span class="label">Repeated</span>PTBS is equivalent to the idea of a job to be done.</div>
-      <h2>5.3 Outside-In Thinking</h2>
-      <div class="def"><span class="term">Outside-In:</span> Focus on the customer problem instead of internal operations.</div>
-    </div>
-  </details>
+<h3>Top 10 Exam Traps to Memorize</h3>
+<ol>
+<li><strong>Gateways do NOT make decisions</strong> — they only route. The preceding task or data made the decision.</li>
+<li><strong>Never send messages within a pool.</strong> Messages flow only between pools.</li>
+<li><strong>A process cannot jump pools.</strong> One pool = one process.</li>
+<li><strong>"Automating tasks DOES NOT change the process."</strong></li>
+<li><strong>Throwing symbol is FILLED</strong>, catching is NOT filled (the reverse feels natural but is wrong).</li>
+<li><strong>Event-based gateway is the ONLY future-looking gateway.</strong></li>
+<li><strong>RPA is NOT AI.</strong> Rules engines are preprogrammed.</li>
+<li><strong>First-Mover Advantage is a Myth.</strong></li>
+<li><strong>Lean + Six Sigma are used in tandem, NOT combined.</strong></li>
+<li><strong>Customer willingness-to-pay test defines waste</strong> — if they won't pay for it, it's waste.</li>
+</ol>
+</section>
 
-  <details id="c6" open>
-    <summary>Class 6 Digital Transformation</summary>
-    <div class="body">
-      <h2>6.1 Five Digital Forces</h2>
-      <ul>
-        <li>Globalization</li>
-        <li>Millennialization</li>
-        <li>Prosumerization</li>
-        <li>Virtualization</li>
-        <li>Platformization</li>
-      </ul>
-      <h2>6.2 Platform Definition</h2>
-      <div class="def"><span class="term">Platform:</span> An open architecture with a governance model designed to facilitate interactions.</div>
-      <h2>6.3 Winner-Takes-All</h2>
-      <div class="trap"><span class="label">Trap</span>Requires all four: high economies of scale, strong network effects, low demand for differentiated features, and high multi-homing costs.</div>
-      <h2>6.4 Digital Mastery</h2>
-      <div class="repeated"><span class="label">Repeated</span>Two critical success factors: digital capabilities and leadership.</div>
-    </div>
-  </details>
+<!-- ========== CLASS 1 ========== -->
+<details id="c1" open>
+<summary>Class 1 — Problem-to-be-Solved, Business Processes &amp; BPMN</summary>
+<div class="body">
 
-  <section id="traps">
-    <h2>Master Trap List</h2>
-    <div class="trap"><span class="label">Exam Trap</span>Gateways do not make decisions; they only route based on previous data or decisions.</div>
-    <div class="trap"><span class="label">Exam Trap</span>Never send messages within a pool.</div>
-    <div class="trap"><span class="label">Exam Trap</span>RPA is not AI.</div>
-    <div class="trap"><span class="label">Exam Trap</span>Automating tasks does not change the process.</div>
-    <div class="trap"><span class="label">Exam Trap</span>First-Mover Advantage is a myth.</div>
-  </section>
+<h2>1.1 Problem-to-be-Solved (PTBS) Approach</h2>
+<div class="def"><span class="term">PTBS — Problem To-Be-Solved (verbatim):</span> "The elemental / core reason the service is valuable to the consumer of the service. It is often not an obvious or surface-level reason."</div>
+<div class="repeated"><span class="label">Repeated</span> "Who are your customers? You don't get paid for what you do. You get paid for the value you create." (Repeated in Class 1 and again in Class 5.)</div>
+<ul>
+<li><strong>Core questions:</strong> What problem do you solve? For whom do you solve the problem? Where do you fit in the value network? Do you add value? Can you capture some of that value as revenue?</li>
+<li><strong>Rule:</strong> "A business must capture part of the value it creates."</li>
+<li><strong>Example:</strong> Boeing/Airbus — core PTBS is <em>the need for human connection</em>, not flying. Demand exceeds capacity because the need for connection is insatiable.</li>
+</ul>
 
-  <section id="practice">
-    <h2>Practice Quiz</h2>
-    <div class="q"><span class="qnum">Q1.</span>What does DMAIC stand for?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">Define, Measure, Analyze, Improve, Control.</div></div>
-    <div class="q"><span class="qnum">Q2.</span>What is the difference between Lean and Six Sigma?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">Lean reduces waste; Six Sigma reduces variability.</div></div>
-    <div class="q"><span class="qnum">Q3.</span>Is RPA the same as AI?<br><button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button><div class="answer">No. Rules engines are preprogrammed and are not AI.</div></div>
-  </section>
+<h2>1.2 Business Processes</h2>
+<div class="def"><span class="term">Business (def):</span> A business is a collection of processes and the resources that make those processes possible.</div>
+<div class="repeated"><span class="label">Repeated</span> "Improving processes will improve a business. Transforming processes will transform a business."</div>
+<div class="verbatim">"Before you can change a process, you must understand how the current process works and what the intended process should look like."</div>
 
-  <div class="footer-note">Offline-ready PWA study guide.</div>
+<h2>1.3 BPMN — Why It Exists</h2>
+<div class="verbatim">"A given BPMN diagram should have one and only one interpretation. The process logic should be completely and unambiguously described by the diagram alone." — Bruce Silver (2011)</div>
+<p><strong>BPMN</strong> = Business Process Model &amp; Notation. Purpose: a single shared visual language so understanding can be communicated, not just held.</p>
+
+<h2>1.4 Pools &amp; Swim Lanes</h2>
+<ul>
+<li><strong>Pool:</strong> Represents a participant in a business process (organization, department, role). Container for the process flow. Each pool = separate entity / organizational boundary.</li>
+<li><strong>Each pool = one independently-owned, separately-managed process.</strong> The main pool is the "implied domain of control" (called an <em>orchestration</em>).</li>
+<li><strong>Swim Lanes:</strong> Inside a pool. Show <em>who is performing each task</em>. Label swim lanes using <strong>roles, NOT people's names</strong>.</li>
+</ul>
+<div class="trap"><span class="label">Trap</span> A BPMN diagram can contain multiple pools — but a single process cannot "jump" across pools. If a process is managed as one process, it must be in one pool divided into swim lanes.</div>
+
+<h2>1.5 Three Basic BPMN Shapes</h2>
+<table>
+<tr><th>Shape</th><th>Symbol</th><th>Definition (verbatim)</th></tr>
+<tr><td><strong>Activity</strong></td><td>Rounded rectangle</td><td>A step in the process. Represents work/action performed. Smallest unit of work is called a "task".</td></tr>
+<tr><td><strong>Event</strong></td><td>Circle</td><td>A signal (message) that something has happened. Can start, pause, resume, interrupt or redirect a process or activity.</td></tr>
+<tr><td><strong>Gateway</strong></td><td>Diamond</td><td>Represents a decision. Controls flow branching, merging, and parallel actions. Pure logic; result based on data previously obtained/analyzed.</td></tr>
+</table>
+<p><strong>All ends of a sequence flow must connect to one of these 3 flow nodes.</strong></p>
+
+<h2>1.6 Activities: Tasks vs. Sub-processes</h2>
+<div class="def"><span class="term">Task:</span> Atomic activity (cannot be broken down into other activities).</div>
+<div class="def"><span class="term">Sub-process:</span> Activity that can be broken down into other tasks.</div>
+
+<h3>7 BPMN Task Types <span class="pill">MEMORIZE</span></h3>
+<table>
+<tr><th>Task Type</th><th>Definition</th></tr>
+<tr><td>Script Task</td><td>Automated task executed by a business process engine using a script.</td></tr>
+<tr><td>Send Task</td><td>Task that sends a message to an external participant.</td></tr>
+<tr><td>Receive Task</td><td>Task that waits for a message to arrive from an external participant.</td></tr>
+<tr><td>User Task</td><td>Task performed by a human user with the assistance of a software application.</td></tr>
+<tr><td>Manual Task</td><td>Task performed by a human without the aid of any business process execution engine or application.</td></tr>
+<tr><td>Service Task</td><td>Automated task that uses a web service or automated application.</td></tr>
+<tr><td>Business Rule Task</td><td>Task that provides input to a business rules engine and receives output from it.</td></tr>
+</table>
+
+<h3>Sub-process Types</h3>
+<ul>
+<li><strong>Reusable Sub-process (Call Activity):</strong> References a globally-defined process reusable across multiple models.</li>
+<li><strong>Embedded Sub-process:</strong> Defined within the parent process; can be collapsed or expanded.</li>
+<li><strong>Event Sub-process:</strong> Triggered by an event, used for exception handling.</li>
+</ul>
+
+<h3>Activity Labeling Rules</h3>
+<div class="trap"><span class="label">Trap</span>
+<ul style="margin:6px 0;">
+<li><strong>Label activities using IMPERATIVE VERBS</strong> — phrased like instructions ("Send Invoice", "Approve Request").</li>
+<li>Labels describe the ACTION performed — they are NOT general descriptions of what is happening or annotations about status.</li>
+<li><strong>Do NOT include "who" performs the task in the label.</strong> The swim lane tells you who.</li>
+<li>Avoid verbs like <em>"Start"</em>, <em>"Attempt"</em>, etc. (Listed on "Common Mistakes to Avoid" slide.)</li>
+</ul>
+</div>
+
+<h3>Throwing vs. Catching</h3>
+<div class="trap"><span class="label">Trap</span>
+<strong>Sending (Throwing) symbol is FILLED IN / DARKENED.</strong><br>
+<strong>Receiving (Catching) symbol is NOT filled.</strong><br>
+(This is counterintuitive — many students reverse it.)
+</div>
+
+<h3>Loops</h3>
+<table>
+<tr><th>Standard Loop</th><th>Multi-Instance Loop</th></tr>
+<tr>
+<td>Activity repeated until condition becomes true. <strong>One instance</strong> at a time. Like a while-loop.</td>
+<td><strong>Multiple instances</strong> of the same activity — parallel or sequential. Used when processing entire collections; activity runs once per object in collection.</td>
+</tr>
+<tr>
+<td>Example: "Keep screening candidates until find qualified candidate."</td>
+<td>Example: "Check delivery item" for each delivery item in shipment.</td>
+</tr>
+</table>
+
+<h2>1.7 Events</h2>
+<div class="verbatim">"Tasks vs. Events: You can assign tasks to specific people (roles) or to machines / computers. Events just happen."</div>
+<div class="repeated"><span class="label">Rule</span> Every process MUST start with a START event. Every process MUST end with an END event. Intermediate events happen between.</div>
+
+<h3>Event Borders</h3>
+<ul>
+<li><strong>Start event:</strong> single thin border line</li>
+<li><strong>Intermediate event:</strong> double border line</li>
+<li><strong>End event:</strong> bold/thick border line</li>
+</ul>
+
+<h3>Intermediate Events</h3>
+<p>Modeled only when:</p>
+<ol>
+<li>An event relevant to others is triggered within a process (receiving message, timer counting down, etc.), OR</li>
+<li>There is a reaction to an event in the process (a point in time is reached, etc.).</li>
+</ol>
+<p>Intermediate events can be <strong>catching OR throwing</strong>.</p>
+
+<h3>Interrupting vs. Non-Interrupting Intermediate Events</h3>
+<div class="def"><span class="term">Interrupting Intermediate Event:</span> Triggers the process to move along the <em>exception flow instead of</em> the regular flow.</div>
+<div class="def"><span class="term">Non-interrupting Intermediate Event:</span> Process continues as normal <em>AND</em> an exception flow is triggered as an additional process flow.</div>
+
+<h3>Boundary Events</h3>
+<p><strong>Put on the boundary of a task symbol.</strong> Alternative process path is triggered if the event occurs <em>before</em> the task is completed.</p>
+<ul>
+<li><strong>Non-interrupting boundary event:</strong> Keep doing current process AND ALSO follow exception flow.</li>
+<li><strong>Interrupting boundary event:</strong> Stop current process and ONLY follow exception flow.</li>
+</ul>
+
+<h2>1.8 Gateways</h2>
+<div class="verbatim">"Gateways split or fork the sequential flow between activities into separate paths and bring flows back together (merge or join). Gateways do not make decisions or allow for time to pass. They simply direct traffic."</div>
+<div class="trap"><span class="label">Trap</span> <strong>Gateways CANNOT make decisions and CANNOT perform actions.</strong> The preceding activity (or data) determined the answer; the gateway just routes. Listed on the "Common Mistakes" slide as "Gateways performing actions."</div>
+
+<h3>Labeling Rules</h3>
+<ul>
+<li>Label gateways as <strong>questions</strong>.</li>
+<li>Label exiting paths as <strong>answers to the question</strong>.</li>
+<li><strong>No need to label parallel gateways</strong> because you must follow all paths (logic is already clear).</li>
+</ul>
+
+<h3>The 4 Gateway Types <span class="pill">MEMORIZE</span></h3>
+<table>
+<tr><th>Gateway</th><th>Symbol/Name</th><th>Rule (verbatim)</th></tr>
+<tr><td><strong>Exclusive</strong></td><td>XOR (×)</td><td>Follow only 1 path.</td></tr>
+<tr><td><strong>Inclusive</strong></td><td>OR (○)</td><td>Follow 1 or more paths.</td></tr>
+<tr><td><strong>Parallel</strong></td><td>AND (+)</td><td>Follow ALL paths. You must finish all paths before continuing.</td></tr>
+<tr><td><strong>Event-based</strong></td><td>pentagon in circle</td><td>Follow path triggered by event.</td></tr>
+</table>
+
+<h3>Event-Based Gateway <span class="badge-reminder">TRAP</span></h3>
+<div class="trap"><span class="label">Trap</span>
+<ul style="margin:6px 0;">
+<li><strong>Events are in the future! It's the only "future-looking" gateway.</strong></li>
+<li>Every path out of this gateway has an event on it.</li>
+<li>The intermediate event is the "condition" that must be met to proceed on that path.</li>
+<li>Gateway logic is based on <strong>which event happens first</strong>.</li>
+<li>Exiting paths are re-combined with an <strong>XOR</strong> gateway.</li>
+<li>Put a <strong>timer event</strong> in case none of the events are satisfied — so you don't get stuck waiting forever.</li>
+</ul>
+</div>
+
+<h3>OR Gateway Special Rules</h3>
+<ul>
+<li>Each path is evaluated for meeting the gateway condition; multiple paths can be true and taken concurrently (unlike XOR where only 1 path can be taken).</li>
+<li>Exiting paths must be recombined with a merge OR gate.</li>
+<li><strong>Default flow</strong> is enabled if and only if no other path is enabled — denoted by a hash mark.</li>
+</ul>
+
+<h3>AND (Parallel) Gateway Rules</h3>
+<ul>
+<li>Creates required concurrent paths (each executes independently).</li>
+<li>Creates a "token" for each split path.</li>
+<li>All tokens must be joined (merged) before ending the path — unless a termination is encountered.</li>
+<li>Flow out of a joining AND gate doesn't occur until ALL preceding paths are complete.</li>
+<li><strong>Style note:</strong> Do NOT use an AND gateway to join parallel paths into a none end event — a join is always implied at a none end event.</li>
+</ul>
+
+<h3>Complex (Discriminator) Gateways</h3>
+<p>Combinations of OR, XOR, and EVENT gateway conditions. Exiting paths re-combined using a complex gateway. <em>"You probably won't use this in this class."</em></p>
+
+<h2>1.9 Process Flow Rules</h2>
+<ul>
+<li>Sequence flow arrows (<strong>solid</strong>) show process sequence.</li>
+<li>Message flow arrows (<strong>dashed with small circle on sending end</strong>) go between pools only.</li>
+<li>Every object (except Start/End events) must have process arrow inflow AND outflow.</li>
+<li>Message flow arrows do NOT substitute for sequence flow arrows.</li>
+</ul>
+
+<div class="def"><span class="term">Orchestration:</span> The managed flow of control within a business process. Represented by sequence (control) flows — solid lines with arrows.</div>
+<div class="def"><span class="term">Choreography:</span> Pattern of messages between separate, distinct processes (pools). Coordination of processes — done by message flows (dashed lines with arrows at one end and small circles at the other end).</div>
+
+<h2>1.10 Data Flow</h2>
+<ul>
+<li><strong>Only send messages between pools.</strong></li>
+<li>Do NOT "send" information to the next step in the same process. It is implied that all necessary information is passed along.</li>
+<li><strong>Data Object:</strong> Piece of data used in a process but goes away once process completes. Linked via an association line.</li>
+<li><strong>Data Store:</strong> Data stored in a database for long-term storage. Association line OUT of data store = query. Association line IN TO data store = update.</li>
+<li>External pools are usually left blank (we don't have details; DMSU = Don't Model Someone else's Unclear process) — focus on what we can change.</li>
+</ul>
+
+<h2>1.11 Common BPMN Mistakes to Avoid (Exam Traps!) <span class="pill">REPEATED</span></h2>
+<div class="trap"><span class="label">Likely on Quiz</span>
+<ol style="margin:6px 0;">
+<li>Gateways performing actions</li>
+<li>Waiting forever (no timer on event gateways)</li>
+<li>Using verbs like "Start", "Attempt", etc. in labels</li>
+<li>Sending messages within a pool</li>
+<li>Unconnected model elements</li>
+<li>Jumping process pools</li>
+<li>Loop symbol vs. process loop</li>
+<li>Duplicating process paths</li>
+<li>Two process paths exiting a task (without a gateway)</li>
+</ol>
+</div>
+</div>
+</details>
+
+<!-- ========== CLASS 2 ========== -->
+<details id="c2" open>
+<summary>Class 2 — Lean Six Sigma Process Improvement</summary>
+<div class="body">
+
+<h2>2.1 Lean — Core Concept</h2>
+<div class="def"><span class="term">Lean (core idea, verbatim):</span> Maximize customer value while minimizing waste. (Creating more value for customers with fewer resources.)</div>
+<div class="repeated"><span class="label">Repeated</span> "Organization understands customer value and focuses its key processes to continuously increase it."</div>
+<div class="verbatim">"Ultimate goal: provide perfect value to the customer through a perfect value creation process that has zero waste."</div>
+
+<h2>2.2 Waste</h2>
+<div class="def"><span class="term">Waste (verbatim):</span> "Anything other than the minimum amount of equipment, materials, parts, space, and worker's time which are absolutely essential to add value to the product."</div>
+<div class="repeated"><span class="label">The Test</span> "If your customer isn't willing to pay extra for it (or choose your product over another) then it is waste."</div>
+
+<h3>Why Focus on Waste?</h3>
+<ul>
+<li>Waste signals that there is time trapped in the process.</li>
+<li>Recognizing waste leads to identifying the root cause of problems.</li>
+<li>Underlying any waste is a systemic flaw in the process involving people, materials, machines, and/or information.</li>
+</ul>
+
+<h2>2.3 DOWNTIME — 8 Categories of Waste <span class="pill">MEMORIZE</span></h2>
+<table>
+<tr><th>Letter</th><th>Category</th><th>Example</th></tr>
+<tr><td>D</td><td>Defects</td><td>Rework, machine breakdown</td></tr>
+<tr><td>O</td><td>Overproduction of work in process</td><td>Making more than can be sold; storing WIP inventory</td></tr>
+<tr><td>W</td><td>Waiting</td><td>Waiting for parts; machine breakdown</td></tr>
+<tr><td>N</td><td>Non-value-added processing</td><td>Counting parts; redundant inspections; rework</td></tr>
+<tr><td>T</td><td>Transportation of materials &amp; equipment</td><td>Moving parts over long distances</td></tr>
+<tr><td>I</td><td>Inventory excesses</td><td>Excess inventory (overproduction)</td></tr>
+<tr><td>M</td><td>Motion</td><td>Looking for tools</td></tr>
+<tr><td>E</td><td>Employees underutilized</td><td>Watching a machine run</td></tr>
+</table>
+<div class="repeated"><span class="label">Key Stat</span> Typically, <strong>95% of all lead time is non-value-added</strong>, with only 5% being value-added.</div>
+
+<h2>2.4 The 5 Principles of Lean <span class="pill">MEMORIZE</span></h2>
+<ol>
+<li><strong>Identify value</strong></li>
+<li><strong>Map the value stream</strong></li>
+<li><strong>Create flow</strong></li>
+<li><strong>Establish pull</strong></li>
+<li><strong>Seek perfection</strong></li>
+</ol>
+
+<h3>Principle 1: Identify Value (Customers Define Value)</h3>
+<ul>
+<li><strong>Value-added:</strong> Any activity that increases the market form or function of the product/service. Activities the customer is willing to pay for.</li>
+<li><strong>Non value-added:</strong> Any activity that does not add market form or function, or is not necessary. Should be eliminated, simplified, reduced, or integrated.</li>
+</ul>
+
+<h3>Principle 2: Map the Value Stream</h3>
+<div class="def"><span class="term">Value Stream:</span> All the activities and resources required to deliver a product/service to the customer — <em>both value-added AND non-value-added</em> activities.</div>
+<p>Taking a Value Stream perspective means looking at the big picture, not just individual processes.</p>
+
+<h4>Root Cause Analysis ("5 Whys")</h4>
+<p>Stop when you reach the root cause — the actual root cause will always be the lowest "why" you answered.</p>
+
+<h3>Principle 3: Create Flow</h3>
+<p>Before: process with starts, stops, and delays. After: process with flow (smooth, continuous).</p>
+
+<h3>Principle 4: Establish Pull</h3>
+<div class="def"><span class="term">Push System (verbatim):</span> A push system produces product, using forecasts or schedules, <em>without regard for what is needed by the next operation</em>.</div>
+<div class="def"><span class="term">Pull System (verbatim):</span> A method of controlling the flow of resources based on <em>exactly what is needed by the next operation</em>.</div>
+<h4>Why Use Pull?</h4>
+<ul>
+<li>Flexible and simple method of balancing flow of resources.</li>
+<li>Effective way to communicate customer demand throughout an operation.</li>
+<li>More responsive to quality issues.</li>
+</ul>
+
+<h4>Takt Time <span class="pill">CALCULATION</span></h4>
+<div class="formula">Takt Time = Work Time Available ÷ Number of Units Sold<br>
+Takt Time = Demand Rate<br><br>
+Example: 1800 seconds ÷ 50 coffees = 36.0 sec/coffee
+</div>
+
+<h4>Lean Time Measures</h4>
+<ul>
+<li><strong>Cycle Time (C/T):</strong> Time it takes an activity within a service to complete before repeating.</li>
+<li><strong>Lead Time (L/T):</strong> Total time it takes a service to complete from start to finish (includes all activities).</li>
+<li><strong>Value Added Time (VA):</strong> Time spent adding value to a service that the customer is willing to pay for.</li>
+</ul>
+
+<h3>Principle 5: Seek Perfection</h3>
+<div class="def"><span class="term">Seek Perfection = Continuous Improvement.</span> Continuous improvement must be an organization-wide philosophy.</div>
+
+<h2>2.5 Six Sigma — Core Concept</h2>
+<div class="def"><span class="term">Six Sigma (verbatim):</span> Six Sigma is a disciplined, data-driven approach &amp; methodology for eliminating defects. Six Sigma seeks to improve the quality of process outputs by identifying &amp; removing the causes of defects (errors) by <em>minimizing variability</em> in business processes.</div>
+<div class="repeated"><span class="label">Contrast</span> <strong>Lean focuses on reducing WASTE. Six Sigma focuses on reducing VARIABILITY.</strong></div>
+
+<h2>2.6 DMAIC Framework <span class="pill">MEMORIZE</span></h2>
+<div class="verbatim">"DMAIC is a methodology for 'filtering out' the trivial many and identifying Critical Factors."</div>
+
+<table>
+<tr><th>Phase</th><th>Purpose</th><th>Key Rule</th></tr>
+<tr><td><strong>D</strong>efine</td><td>Define scope, goals, performance targets. Confirm problem actually exists, is important to customers, is important to the business. Assemble project team.</td><td>—</td></tr>
+<tr><td><strong>M</strong>easure</td><td>Determine the "As-Is Condition." Tools: Process map · Forced ranking · Pareto &amp; Cause-and-Effect (Fishbone) diagrams · FMEA (Failure Mode &amp; Effects Analysis).</td><td><strong>Rule #1: "No Active Manipulation."</strong> Data collection is passive; process is studied in its natural state.</td></tr>
+<tr><td><strong>A</strong>nalyze</td><td>Prove or disprove what was learned in Measure. Applies statistical logic.</td><td><strong>Rule #2: "Still No Active Manipulation."</strong></td></tr>
+<tr><td><strong>I</strong>mprove</td><td>Team actively manipulates the remaining X's to gain significant improvement. Validate all results.</td><td><strong>"Start Active Manipulation."</strong></td></tr>
+<tr><td><strong>C</strong>ontrol</td><td>Sustain the gains. Training · Procedures · Control Plans · Buy-In · Hand-Off · Audits. Prevent backsliding.</td><td>Reassemble to revisit; watch for deterioration and for continuous improvement.</td></tr>
+</table>
+
+<h3>DMAIC — Important "X's" Points</h3>
+<ul>
+<li>The whole purpose of DMAIC is to deliver the most useful X's to the Improve Phase.</li>
+<li>Measure and Analyze collect X's and filter out the less important ones.</li>
+<li>If all X's were delivered to Improve, it would be overwhelming — so continue to filter.</li>
+<li><strong>Trap:</strong> A really important X may have been discarded. If gains aren't being made in Improve, an important X may have been discarded or never discovered.</li>
+</ul>
+
+<h2>2.7 Voice of the Customer (VOC) <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">VOC (verbatim):</span>
+<ul style="margin:6px 0;">
+<li>VOC communicates the wants and needs of customers.</li>
+<li>Must be clearly defined and measurable.</li>
+<li>Expressed as a target (goal) or upper and lower limits (specifications).</li>
+<li>A "customer" can be internal or external (another operation, the community, a buying organization, etc.).</li>
+</ul>
+</div>
+
+<h2>2.8 Voice of the Process (VOP) <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">VOP (verbatim):</span>
+<ul style="margin:6px 0;">
+<li>A process produces outputs (things), information, and consequences (impact) — collectively called "process outcomes."</li>
+<li>The "Voice of the Process" refers to measures of process outcomes (measures of results).</li>
+<li>VOP data must be analyzed to uncover cause &amp; effect relationships.</li>
+</ul>
+</div>
+
+<h2>2.9 The Goal of Six Sigma <span class="pill">MEMORIZE</span></h2>
+<div class="repeated"><span class="label">Star Definition</span> "The goal of Six Sigma is to align the voice of the customer with the voice of the process <strong>99.9997%</strong> of the time — no more than <strong>3.4 defective parts per million opportunities (DPMO)</strong>."</div>
+
+<h2>2.10 The 3-Sigma Math Problem</h2>
+<div class="formula">30 components, each with 3-sigma quality (99.75%), all must work:<br>
+P(all work) = 0.9975<sup>30</sup> ≈ 0.9277 = <strong>92.77%</strong><br>
+Defect rate = 1 − 0.9277 ≈ <strong>7.23%</strong><br><br>
+Insight: Even tiny component defect rates compound across complex products — which is why Six Sigma (99.99966%) is needed.</div>
+
+<h2>2.11 Lean Six Sigma — Used Together</h2>
+<div class="trap"><span class="label">Trap</span> <strong>"Lean and Six Sigma should be used in tandem, NOT combined."</strong> Managers need to balance Lean and Six Sigma teams to promote collaboration. Complementary &amp; synergistic goals.</div>
+
+</div>
+</details>
+
+<!-- ========== CLASS 3 ========== -->
+<details id="c3" open>
+<summary>Class 3 — Digital BPM, RPA, AI, GANs &amp; RAG</summary>
+<div class="body">
+
+<h2>3.1 Business Process Management (BPM)</h2>
+<div class="def"><span class="term">BPM (Definition 1, verbatim):</span> Focuses on improving corporate performance by managing and optimizing a company's business processes. Can be described as a "process optimization process." BPM enables organizations to be more efficient, more effective, and more capable of change than a functionally-focused, traditional hierarchical management approach.</div>
+<div class="def"><span class="term">BPM (Definition 2, verbatim):</span> BPM is a discipline that uses various methods to <em>discover, model, analyze, measure, improve and optimize</em> business processes. A business process coordinates the behavior of people, systems, information, and things to produce business outcomes in support of a business strategy.</div>
+<p><strong>As a managerial approach, BPM sees processes as strategic assets of an organization that must be understood, managed, and improved to deliver value-added products and services to clients.</strong></p>
+
+<h3>BPM Benefits</h3>
+<ul style="columns:2;">
+<li>Increased efficiency</li>
+<li>Reduced costs</li>
+<li>Improved customer satisfaction</li>
+<li>Better regulatory compliance</li>
+<li>Faster process execution</li>
+<li>Improved data accuracy</li>
+<li>Greater visibility into operations</li>
+<li>Ability to streamline &amp; optimize business processes</li>
+</ul>
+
+<h2>3.2 Digital Business Process Management</h2>
+<div class="def"><span class="term">Digital BPM (verbatim):</span> Converting manual processes into digital processes and managing them using digital technology.</div>
+<p>Digital BPM enables two key outcomes:</p>
+<ul>
+<li><strong>Process Execution</strong> — BPMN leads to process execution.</li>
+<li><strong>Process Intelligence</strong> — BPMN leads to process intelligence (including <strong>process mining</strong>).</li>
+</ul>
+
+<h2>3.3 The 7 Rs of Process Innovation (Steven Shapiro) <span class="pill">MEMORIZE</span></h2>
+<ol>
+<li><strong>R</strong>ethink</li>
+<li><strong>R</strong>econfigure</li>
+<li><strong>R</strong>esequence</li>
+<li><strong>R</strong>elocate</li>
+<li><strong>R</strong>educe</li>
+<li><strong>R</strong>eassign</li>
+<li><strong>R</strong>etool</li>
+</ol>
+
+<h2>3.4 Robotic Process Automation (RPA)</h2>
+<div class="def"><span class="term">RPA (verbatim):</span> Use call activities or bots to perform automated tasks or series of tasks.</div>
+<ul>
+<li>RPA usually employs <strong>preprogrammed bots that follow specific rules</strong>.</li>
+<li>In business process modeling, we call pre-specified rules <strong>"rules engines"</strong>.</li>
+<li><strong>Rules engines are NOT Artificial Intelligence.</strong></li>
+<li>RPA may employ basic AI functions (summarization, automated response generation, etc.).</li>
+</ul>
+
+<div class="trap"><span class="label">Trap</span> <strong>"RPA does NOT delegate critical thinking or decision making to bots."</strong> That's where Intelligent Automation / Agentic AI begins.</div>
+<div class="repeated"><span class="label">Repeated</span> <strong>"Automating Tasks DOES NOT Change the Process."</strong> (Said 4+ times across Class 3 and Class 4.)</div>
+
+<h2>3.5 Intelligent Automation — The Bridge</h2>
+<div class="def"><span class="term">Intelligent Automation (verbatim):</span> RPA with decision-making AI.</div>
+
+<h2>3.6 Artificial Intelligence (AI)</h2>
+<div class="def"><span class="term">AI (verbatim, core definition):</span> Machine behavior &amp; function that exhibits the intelligence &amp; behavior of humans.</div>
+
+<h3>How AI Works (7 Steps)</h3>
+<ol>
+<li><strong>Data Collection</strong> — Requires extensive data (images, text, numbers) for learning.</li>
+<li><strong>Data Processing</strong> — Cleans and organizes data for better understanding.</li>
+<li><strong>Algorithms</strong> — Step-by-step instructions for data analysis.</li>
+<li><strong>Model Training</strong> — Learns from data to refine predictions.</li>
+<li><strong>Feedback and Adjustment</strong> — Improves through error feedback.</li>
+<li><strong>Pattern Recognition</strong> — Identifies patterns for predictions.</li>
+<li><strong>Deployment</strong> — Implemented in real-world scenarios, continuing to learn from new data.</li>
+</ol>
+
+<h2>3.7 The 7 Patterns of AI Applications <span class="pill">MEMORIZE</span></h2>
+<div class="trap"><span class="label">Trap</span> Gimpel calls out: <strong>"These patterns are NOT MECE (Mutually Exclusive, Collectively Exhaustive). There is conceptual and application overlap among patterns."</strong></div>
+<table>
+<tr><th>Pattern</th><th>Definition</th><th>Examples</th></tr>
+<tr><td>Recognition</td><td>Machine identifies &amp; understands real-world and unstructured data input.</td><td>Facial recognition, sound recognition, object detection, handwriting recognition</td></tr>
+<tr><td>Conversation &amp; Human Interaction</td><td>Engages in dialog with humans — interprets language, responds meaningfully with context awareness.</td><td>Chatbots, sentiment analysis, mood analysis, intent analysis</td></tr>
+<tr><td>Predictive Analytics &amp; Decisions</td><td>Uses past and/or current data &amp; patterns to predict the future.</td><td>Inventory forecasting, supply chain management, decision support</td></tr>
+<tr><td>Goal-driven Systems</td><td>Finds optimal solution to a problem through trial &amp; error.</td><td>Scenario simulations, game playing, resource optimization, iterative problem solving, mapping fastest travel route, roboadvising</td></tr>
+<tr><td>Patterns &amp; Anomalies</td><td>Detects, classifies, interprets regularities &amp; irregularities to identify trends, risks, opportunities. Classifies as normal or abnormal.</td><td>Spam filters, fraud detection, cyber threat detection, predictive maintenance, disease detection</td></tr>
+<tr><td>Hyper-personalization</td><td>Treats individuals as individuals. Delivers experiences, products, services based on an individual's unique preferences, behavior, and other characteristics.</td><td>Movie/song suggestions, Amazon suggestions, smart thermostats, personalized medicine</td></tr>
+<tr><td>Autonomous Systems</td><td>Physical &amp; virtual (software) systems that accomplish tasks, achieve goals, interact with surroundings with minimal or no human involvement.</td><td>Self-driving cars, warehouse robots, food delivery robots</td></tr>
+</table>
+
+<h2>3.8 Generative AI</h2>
+<div class="def"><span class="term">Generative AI (verbatim):</span> Trainable algorithms that create (generate) new content, including audio, code, images, text, simulations, and videos.<br><br>
+Generative AI learns from existing artifacts to generate new, realistic artifacts (at scale) that reflect the characteristics of the training data <em>but don't repeat it</em>.</div>
+
+<p><strong>Content types:</strong> Images · Videos · Music · Speech · Text · Software code · Product designs.</p>
+
+<h3>GenAI Inflection Point</h3>
+<ul>
+<li><strong>ELIZA chatbot</strong> — Created 1961. Simulated a psychotherapist using natural language.</li>
+<li><strong>Generative AI Inflection Point = 2014</strong> — Introduction of Generative Adversarial Network (GAN).</li>
+</ul>
+
+<h2>3.9 Generative Adversarial Network (GAN) <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">GAN (verbatim):</span>
+<ul style="margin:6px 0;">
+<li>Generative AI creates content.</li>
+<li>Generative AI tries to identify it as GenAI-created.</li>
+<li>Feedback loop creates convincing content.</li>
+</ul>
+</div>
+<p>Think of it as one AI generating, another AI critiquing — they compete, and the generator gets better at fooling the discriminator over time.</p>
+
+<h2>3.10 Retrieval-Augmented Generation (RAG) <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">RAG (verbatim):</span> LLM references additional data from a dataset beyond the original (common/shared) training data.</div>
+<p><strong>Why important:</strong> RAG allows a general-purpose LLM to answer questions about proprietary or recent information it wasn't trained on — critical for business applications of AI.</p>
+
+</div>
+</details>
+
+<!-- ========== CLASS 4 ========== -->
+<details id="c4" open>
+<summary>Class 4 — AI Risks, Agentic AI &amp; Machine Reengineering</summary>
+<div class="body">
+
+<h2>4.1 AI Limitations</h2>
+<div class="two-col">
+<div>
+<h3>Technical Challenges</h3>
+<ul>
+<li>Data Requirements</li>
+<li>Bias &amp; Fairness</li>
+<li>Privacy</li>
+<li>Data Fitting</li>
+<li>Explainability</li>
+<li>Feedback Loops</li>
+</ul>
+</div>
+<div>
+<h3>Broader Challenges</h3>
+<ul>
+<li>Security</li>
+<li>Misinformation</li>
+<li>Loss of Autonomy</li>
+<li>Human Trust / Distrust</li>
+<li>Privacy Loss</li>
+<li>Legal Accountability</li>
+<li>Job Displacement</li>
+</ul>
+</div>
+</div>
+
+<h2>4.2 Recap: RPA → Intelligent Automation</h2>
+<div class="def"><span class="term">RPA:</span> Use call activities or bots to perform automated tasks or series of tasks. Uses preprogrammed rules engines (NOT AI). Does NOT delegate critical thinking or decision making to bots.</div>
+<div class="def"><span class="term">Intelligent Automation:</span> RPA with decision-making AI.</div>
+
+<h2>4.3 Agentic AI <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Agentic AI (core definition, verbatim):</span> An AI system specifically designed to understand complex workflows and achieve goals autonomously, with little to no human interference.</div>
+
+<h3>5 Key Characteristics of Agentic AI</h3>
+<table>
+<tr><th>Characteristic</th><th>Definition (verbatim)</th></tr>
+<tr><td><strong>Autonomy</strong></td><td>Imbued with its own goals, objectives, and motivations that drive decision-making and actions. Autonomously chooses most appropriate steps to pursue goals without human supervision.</td></tr>
+<tr><td><strong>Adaptive Learning and Reasoning</strong></td><td>Gathers information from interactions with environment and learns from past experiences. Applies reasoning and problem-solving to update knowledge, revise strategies, and improve performance over time.</td></tr>
+<tr><td><strong>Language Understanding</strong></td><td>Leverages state-of-the-art NLP models to process and comprehend human language at a deep semantic level.</td></tr>
+<tr><td><strong>Workflow Optimization</strong></td><td>Combines language understanding with reasoning, planning, and decision-making abilities to optimize workflows and business processes (e.g., optimizing resource allocation, streamlining communication and collaboration, identifying opportunities for process automation).</td></tr>
+<tr><td><strong>Multi-agent and System Conversation</strong></td><td>Communicates between different agents to build a complex workflow. Connects to other systems or tools (email, code executor, search engine) to perform variety of tasks.</td></tr>
+</table>
+
+<h3>Common AI Agents</h3>
+<ul>
+<li>Code generators</li>
+<li>Customer service prioritization</li>
+<li>Social media / blog post generator</li>
+<li>News article writer</li>
+<li>Spam detector</li>
+<li>Job description generator</li>
+</ul>
+
+<h3>More Advanced AI Agents</h3>
+<ul>
+<li>Self-driving cars</li>
+<li>Power grid management</li>
+<li>Fraud detection</li>
+<li>Automated stock trading</li>
+</ul>
+
+<h3>AI Agent Example — "John's Birthday Agent"</h3>
+<p>John's AI agent: recognizes upcoming birthday → determines gift giving is appropriate → scrapes digital correspondence &amp; social media to identify father's preferences → identifies best value-for-money gift → orders gift for delivery and writes heartfelt note in John's "voice" → reminds John about the birthday.</p>
+
+<div class="repeated"><span class="label">Repeated 4+ times</span> <strong>"Automating Tasks DOES NOT Change the Process."</strong> Agentic AI enables actual <em>process</em> change — not just task automation.</div>
+
+<h2>4.4 Machine Reengineering <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Machine Reengineering — 2 Concepts (verbatim):</span>
+<ol style="margin:6px 0;">
+<li>Redesigning business processes so humans work with AI agents to improve effectiveness and/or efficiency.</li>
+<li>AI acts as business process engineer to optimize business processes.</li>
+</ol>
+</div>
+
+<div class="verbatim">"Managers noted historical trends and revised processes, and engineers developed code that was then baked into computing systems. Every update or response to the market required multiple steps; it cost time and performance. Sometimes, by the time changes were in place, the market had already moved."<br><br>
+"Machine-reengineering asks that people train and actively manage the performance of the <strong>algorithms and data models that drive process change</strong>, rather than drive process change themselves."<br>
+— Wilson, Alter, Shukla et al. (2016)</div>
+
+</div>
+</details>
+
+<!-- ========== CLASS 5 ========== -->
+<details id="c5" open>
+<summary>Class 5 — Service Thinking &amp; Value-Based Innovation</summary>
+<div class="body">
+
+<h2>5.1 Service Thinking — Core</h2>
+<div class="def"><span class="term">Service Thinking (verbatim):</span> The purpose of a service is to help customers solve a problem and help them to achieve certain desired outcomes or goals. Customers have problems that they need solved.</div>
+
+<h3>3 Questions of Service Thinking <span class="pill">MEMORIZE</span></h3>
+<ol>
+<li>What is the problem to be solved?</li>
+<li>What is the service interface?</li>
+<li>What are proper measures of service quality?</li>
+</ol>
+
+<h2>5.2 Outside-In Thinking <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Outside-In Thinking (verbatim, appears in both Class 5 &amp; Class 6):</span> Outside-In thinking focuses on solving customer problems <em>instead of focusing on internal operations</em>.</div>
+
+<h3>The Outside-In Perspective Constantly Asks:</h3>
+<ul>
+<li>What do customers need?</li>
+<li>How and why are customers changing?</li>
+<li>What can we do to better solve their problems &amp; meet their emerging needs?</li>
+</ul>
+
+<div class="repeated"><span class="label">Repeated from Class 1</span> "Who are your customers? You don't get paid for what you do. You get paid for the value you create."</div>
+
+<h2>5.3 PTBS (Reminder)</h2>
+<div class="def"><span class="term">PTBS (verbatim, same as Class 1):</span> The elemental / core reason the service is valuable to the consumer of the service. It is often not an obvious or surface-level reason.</div>
+<p><strong>PTBS ~ Job to be done</strong> (equivalent concepts).</p>
+
+<h2>5.4 Service Interface</h2>
+<div class="def"><span class="term">Service Interface (verbatim):</span> Customers interact with a service via the service interface. A service interface consists of <em>all the interactions</em> between the customer and the service process engine (which includes all partner service process engines).</div>
+
+<h2>5.5 Service Metrics — Two Kinds</h2>
+<ul>
+<li><strong>Value metrics</strong> — measure value delivered to the customer (at the top).</li>
+<li><strong>Process metrics</strong> — measure internal efficiency.</li>
+</ul>
+
+<div class="def"><span class="term">Process Productivity (verbatim):</span> A service is productive to the extent that the service process engine uses the least amount of resources in the least amount of time to satisfy the customers' desired outcomes.<br><br>
+The objective is to minimize the cost of satisfying the customers' desired outcomes, thereby maximizing service profitability.</div>
+
+<div class="trap"><span class="label">Trap</span> <strong>"Don't stare in the mirror."</strong> Don't focus on process metrics at the expense of value metrics. (Reappears as one of the 7 Principles in Class 6.)</div>
+
+<h2>5.6 Service-Dominated Logic (SDL)</h2>
+<table>
+<tr><th>Goods-Dominated Logic</th><th>Service-Dominated Logic</th></tr>
+<tr><td>Separation between producer &amp; consumer. Maximizes production control, efficiency, and profit maximization. Achieved by standardizing product and producing it away from the market.</td><td>Focused on the interaction of the producer and the consumer and other supply/value network partners as they <em>co-create value through collaborative processes</em>. Driven by innate purpose of doing something for and with another party — customer-centric and customer-responsive.</td></tr>
+</table>
+
+<h3>5 SDL Contrasts <span class="pill">MEMORIZE</span></h3>
+<table>
+<tr><th>Goods-Dominated</th><th>Service-Dominated</th><th>Meaning</th></tr>
+<tr><td>Operand</td><td>Operant</td><td>Customer goes from purchaser → value co-creator.</td></tr>
+<tr><td>Asymmetric info</td><td>Symmetric info</td><td>Symmetric flow of information within firm, across partners, customers, employees.</td></tr>
+<tr><td>Propaganda</td><td>Conversation</td><td>"Here's what I'll tell you about our product" → "Tell me how I can solve your PTBS / Can you help me with…?"</td></tr>
+<tr><td>Value-Added</td><td>Value Proposition</td><td>Goods-dominant: value is added in manufacturing. Service-dominant: provider offers value proposition; if customer accepts, they <em>create value together</em>.</td></tr>
+<tr><td>Transactional</td><td>Relational</td><td>Business is built via ongoing relationships, not one-time transactions.</td></tr>
+<tr><td>Profits (end in itself)</td><td>Financial Feedback</td><td>Financial success is an important form of marketplace <em>feedback</em> about how well you fulfill the value proposition.</td></tr>
+</table>
+
+<h3>Tangibles vs. Intangibles</h3>
+<ul>
+<li>A tangible good enables customers to provision a service that can satisfy the customers' desired outcomes with respect to a job-to-be-done.</li>
+<li>Experience is fundamentally about the <strong>intangible</strong>, not the tangible.</li>
+<li><strong>Shift from stand-alone product to solution for customer.</strong></li>
+</ul>
+
+<h3>Key SDL Principle</h3>
+<div class="verbatim">"Goods are actually mechanisms for service provision. The customer is always buying a service flow rather than a tangible thing; thus the firm should focus on selling a flow of service. Organization should focus on the whole service system rather than a stand-alone product."</div>
+
+<h2>5.7 Customer Experience Transformation <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">4 Required Aspects of Successful Customer Experience Transformation (verbatim, appears in Class 5 AND Class 6):</span>
+<ol style="margin:6px 0;">
+<li><strong>Outside-In Design</strong></li>
+<li><strong>Increase Reach &amp; Engagement</strong></li>
+<li><strong>Data-driven Experience</strong></li>
+<li><strong>Seamless Physical-Digital Integration</strong></li>
+</ol>
+</div>
+<div class="repeated"><span class="label">Remember</span> "Everyone Will Know About Your Failures." Customer experiences are shared widely in a digital world.</div>
+
+<h2>5.8 Value-Based Innovation <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Value-Based Innovation (verbatim):</span>
+<ul style="margin:6px 0;">
+<li>Creating a more compelling value proposition.</li>
+<li>Finding a better way to solve customer's PTBS.</li>
+</ul>
+</div>
+<p><strong>Value-based innovation ≠ invention.</strong> Value-based innovation focuses on delivering a better solution to the customer's problem — the tech may already exist.</p>
+
+<div class="repeated"><span class="label">Warning</span> "Companies are at risk when they start focusing on <em>what they do</em> — rather than delivering maximum value to their customers."</div>
+
+<h3>Value Creation Transcends Industry Borders</h3>
+<ul>
+<li>Craigslist destroyed classified advertising in newspapers.</li>
+<li>Skype + WhatsApp sucked $386 billion away from telcos.</li>
+<li>When you serve the customer's PTBS better, you steal value from adjacent industries.</li>
+</ul>
+
+<h2>5.9 Combinatorial Innovation <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Combinatorial Innovation:</span> Combining existing ideas, technologies, or components in new ways to create value.</div>
+<p><strong>Examples:</strong> Toyota Prius (hybrid patented in 1889 + modern electronics, introduced 1997). Smartphone navigation = GPS + smartphone hardware + map software.</p>
+<div class="repeated"><span class="label">Key Stat</span> "Only 10% of business model innovations introduced new business model patterns. 90% of business model innovations merely adapted, refined, or combined previous business model patterns." — Univ. of St. Gallen</div>
+
+</div>
+</details>
+
+<!-- ========== CLASS 6 ========== -->
+<details id="c6" open>
+<summary>Class 6 — Digital Business Transformation</summary>
+<div class="body">
+
+<h2>6.1 The 6 Building Blocks of Class 6</h2>
+<ol>
+<li>5 Digital Forces</li>
+<li>Service-Dominated Logic (from Class 5)</li>
+<li>Customer Experiences</li>
+<li>Digital Mastery</li>
+<li>Digital Vision</li>
+<li>Business Model Reinvention</li>
+</ol>
+
+<h2>6.2 The 5 Digital Forces <span class="pill">CORE</span> <span class="pill">MEMORIZE</span></h2>
+<p>Gimpel &amp; Westerman (2012); Cognizant &amp; MIT (2012).</p>
+
+<h3>1. Globalization</h3>
+<div class="def"><span class="term">Globalization (verbatim):</span> Globalization is more than supply chain management and optimizing labor costs. It fundamentally changes the nature of supply and demand.<br><br>
+As artificial barriers disappear, consumers enjoy a new world of choice no longer limited by geographic borders. Companies benefit from larger markets and global sourcing, while concurrently taking steps to fend off challenges from foreign competitors.</div>
+
+<h3>2. Millennialization</h3>
+<p>Customers no longer trust corporate propaganda — they ask friends, strangers, and social networks. <strong>Millennialization facilitates an outside-in perspective.</strong></p>
+<ul>
+<li>"Here's what I'll tell you about our product" → "I don't trust your propaganda" → "I'll ask my friends. Heck, I'll ask strangers."</li>
+</ul>
+
+<h3>3. Prosumerization</h3>
+<div class="def"><span class="term">Prosumerization (verbatim):</span> Inexpensive, easy-to-use tools provide professional-grade results, lower barriers to market entry. Prosumerization changes the nature of supply and demand.</div>
+
+<h3>4. Virtualization</h3>
+<div class="def"><span class="term">Virtualization (verbatim):</span> Business virtualization empowers firms to focus on their core strengths by partnering with other firms that can better execute other business processes.<br><br>
+When pursued mindfully, virtualization can reduce costs, increase agility, and boost quality by moving some process steps to companies that excel in those specific functions.</div>
+<p><strong>Examples:</strong> Outsourcing &amp; temporary alliances.</p>
+
+<h3>5. Platformization</h3>
+<div class="def"><span class="term">Platformization (core quote):</span> "Today platforms are the gateways through which businesses must pass to reach their customers."</div>
+<div class="def"><span class="term">Platform (verbatim definition):</span> An open architecture with a governance model designed to facilitate interactions.</div>
+
+<h2>6.3 Network Effects <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">Network Effect (verbatim):</span> The value of a network depends on the number of users with whom members can interact.<br><br>
+Network effects can be both <strong>positive AND negative</strong>. The number and type of users makes a difference.</div>
+
+<h2>6.4 Traditional vs. Platform Strategy</h2>
+<table>
+<tr><th>Industrial Companies</th><th>Platform Companies</th></tr>
+<tr><td>Product/Service Focus</td><td>Interaction Focus</td></tr>
+<tr><td>Supply Scale Economies</td><td>Demand Scale Economies</td></tr>
+<tr><td>Linear Supply Chain</td><td>Ecosystems</td></tr>
+<tr><td>Innovate via Internal R&amp;D</td><td>3rd-Party Innovation</td></tr>
+<tr><td>Key Assets = Company Assets</td><td>Key Assets = Community Assets</td></tr>
+</table>
+<p><em>Source: Marshall Van Alstyne Lecture (2018).</em></p>
+
+<h2>6.5 Characteristics of Industries Ready for Platformization</h2>
+<ul>
+<li>High proportion of value from information</li>
+<li>Highly fragmented industries</li>
+<li>Simple, modular products &amp; services (connectable through APIs, etc.)</li>
+<li>Existing untapped spare capacity in market</li>
+</ul>
+<p><strong>Platforms are often layered on top of other platforms.</strong> Platforms in one layer are often a critical chokepoint for platforms in another layer.</p>
+
+<h2>6.6 Winner-Takes-All <span class="pill">MEMORIZE</span> <span class="badge-reminder">TRAP</span></h2>
+<div class="trap"><span class="label">Trap — All 4 REQUIRED</span>
+<strong>Winner-Takes-All Requires (ALL 4 MUST be present):</strong>
+<ol style="margin:6px 0;">
+<li>High economies of scale</li>
+<li>Strong network effects</li>
+<li>Low demand for differentiated features</li>
+<li>High multi-homing costs</li>
+</ol>
+</div>
+
+<div class="trap"><span class="label">Counterintuitive Trap</span>
+<strong>"First Mover Advantage is a MYTH."</strong> First-to-market does <em>not</em> guarantee victory, even when "first to market wins" is commonly repeated. Expect a question on this.
+</div>
+
+<h2>6.7 Monetizing Platforms <span class="pill">MEMORIZE</span></h2>
+<table>
+<tr><th>Strategy</th><th>Description</th></tr>
+<tr><td><strong>Transaction Cut</strong></td><td>Take a cut of the deal.</td></tr>
+<tr><td><strong>Charge for Access</strong></td><td>Charge so a user can interact with another user.</td></tr>
+<tr><td><strong>Charge for Tools</strong></td><td>Charge users for tools that upgrade performance or provide better content on the platform. <strong>"Freemium" falls in this category.</strong></td></tr>
+<tr><td><strong>Charge for Attention</strong></td><td>Advertising-based model (e.g., social media monetization).</td></tr>
+</table>
+
+<div class="trap"><span class="label">Trap</span> <strong>Startups + advertising-based business models = Bad Idea.</strong><br>
+Why? (1) Advertising is a scale business — small user base = small $$$. (2) Good ad targeting requires extensive data about interactions — new startups lack both.</div>
+
+<div class="verbatim">"Be open — but control a critical chokepoint. Otherwise you won't capture the value you create."</div>
+
+<h2>6.8 Digital Mastery <span class="pill">MEMORIZE</span></h2>
+<div class="def"><span class="term">2 Critical Success Factors for Digital Transformation (verbatim):</span>
+<ol style="margin:6px 0;">
+<li>Digital Capabilities</li>
+<li>Leadership</li>
+</ol>
+</div>
+
+<h3>The Digital Mastery 2x2</h3>
+<table>
+<tr><th></th><th>Low Capabilities</th><th>High Capabilities</th></tr>
+<tr><th>Low Leadership</th><td><strong>Beginners</strong><br>Revenue: −6%<br>Profit: −24%</td><td><strong>Fashionistas</strong><br>Revenue: +6%<br>Profit: −11%</td></tr>
+<tr><th>High Leadership</th><td><strong>Conservatives</strong><br>Revenue: −10%<br>Profit: +9%</td><td><strong>Digital Masters</strong><br>Revenue: +9%<br>Profit: +26%</td></tr>
+</table>
+
+<h3>Transformation Must-Haves</h3>
+<ul>
+<li>Business Capabilities:
+  <ul>
+    <li>Business Processes</li>
+    <li>Customer Engagements</li>
+    <li>Business Models</li>
+  </ul>
+</li>
+<li>Strong Leadership Capabilities</li>
+</ul>
+
+<h3>Transforming Business Processes — Strategy</h3>
+<div class="repeated"><span class="label">Strategy</span> <strong>Change operational processes FIRST.</strong> They serve as the foundation for future changes and are <em>hard to duplicate</em>.</div>
+<div class="verbatim">"Competitors can see how you transform the customer experience, but they cannot see how you transform your operations. They can see your results but will have no idea how you achieve them — and will not be able to replicate them."</div>
+
+<h3>Digital Leadership</h3>
+<ul>
+<li><strong>Leadership MUST be top-down.</strong> Needs top-down coordination of a unified vision.</li>
+<li>4 leadership behaviors: Vision Building · Employee Engagement · IT–Business Bridge Building · Strong Governance.</li>
+</ul>
+
+<h2>6.9 Digital Vision <span class="pill">MEMORIZE</span></h2>
+<div class="verbatim">"Successful digital transformation starts at the top of the company. Only the senior-most executives can create a compelling vision of the future and communicate it throughout the organization. Then people in middle and lower levels can make the vision a reality. This kind of change doesn't happen through simple mandate. It must be led."</div>
+
+<h3>Transformative Vision (NOT Incremental)</h3>
+<div class="repeated"><span class="label">Warning</span> "The vision must be transformative! Incremental visions will limit your benefits. Digital transformation <strong>reinvents the nature of an offering</strong>, allowing your firm &amp; your customers to do things radically better than you could before."</div>
+
+<h3>3 Types of Digital Visions <span class="pill">MEMORIZE</span></h3>
+<ol>
+<li><strong>Reenvision customer experience</strong></li>
+<li><strong>Reenvision operational processes</strong></li>
+<li><strong>Reenvision business model</strong> (combines customer experience &amp; operational processes)</li>
+</ol>
+
+<h3>Framing Your Digital Vision</h3>
+<ul>
+<li>Identify strategic assets</li>
+<li>Create transformative ambitions</li>
+<li>Define clear intent &amp; outcome</li>
+<li>Evolve the vision over time</li>
+</ul>
+
+<h2>6.10 The 5 Business Model Reinvention Archetypes <span class="pill">⭐ CORE — MEMORIZE VERBATIM</span></h2>
+<div class="def"><span class="term">5 Business Model Reinvention Archetypes (verbatim):</span>
+<ol style="margin:6px 0;">
+<li><strong>Reinvent Industries</strong></li>
+<li><strong>Substitute Products or Services</strong></li>
+<li><strong>Create New Digital Businesses</strong></li>
+<li><strong>Reconfigure Value Delivery</strong></li>
+<li><strong>Rethink Value Propositions</strong></li>
+</ol>
+</div>
+<div class="trap"><span class="label">Trap</span> The slide deck repeats this list 7 times back-to-back. This is the most emphasized item in Class 6 — expect a direct "List the 5 archetypes" question.</div>
+
+<h2>6.11 The 7 Principles for Competing in the Internet Age</h2>
+<ol>
+<li>Fight fire with fire</li>
+<li>Disrupt yourself</li>
+<li>Leverage the right assets</li>
+<li>Focus on value, not structure</li>
+<li>Rethink your core business</li>
+<li>Don't stare in the mirror <em>(callback to Class 5 — don't obsess over process metrics)</em></li>
+<li>Focus on platform engagement</li>
+</ol>
+
+</div>
+</details>
+
+<!-- ========== TRAP MASTER LIST ========== -->
+<details id="traps" open>
+<summary>⚠️ Master Exam-Trap List — Read Before the Quiz</summary>
+<div class="body">
+<p>These are items Gimpel explicitly flagged, repeated, or structured as common mistakes — high-probability quiz hits.</p>
+
+<h3>BPMN Traps</h3>
+<ol>
+<li><strong>Gateways don't make decisions or perform actions</strong> — they route traffic. The data/task before the gateway made the decision.</li>
+<li><strong>Throwing = filled, Catching = not filled.</strong> Counterintuitive.</li>
+<li><strong>Events "just happen"; tasks are assigned</strong> to people or machines.</li>
+<li><strong>Start = thin border; Intermediate = double border; End = thick border.</strong></li>
+<li><strong>Event-based gateway is the ONLY future-looking gateway.</strong> Always put a timer event to avoid waiting forever. Exiting paths recombined with XOR.</li>
+<li><strong>Interrupting boundary event → ONLY exception flow</strong> (current process stops). <strong>Non-interrupting → both flows continue.</strong></li>
+<li><strong>Messages go ONLY between pools.</strong> Never within a pool.</li>
+<li><strong>Processes cannot jump pools.</strong> One pool = one process (split by lanes).</li>
+<li><strong>Activity labels = imperative verbs, not descriptions.</strong> Do not write who performs the task — the swim lane shows that.</li>
+<li><strong>Avoid "Start", "Attempt" in activity labels.</strong> Listed on Common Mistakes slide.</li>
+<li><strong>Parallel gateways don't need labels</strong> — all paths are taken, so logic is clear.</li>
+<li><strong>Don't use AND gateway to join into a none-end event</strong> — join is already implied.</li>
+<li><strong>Only send messages between pools</strong> (never within); don't send data to next step in same process — information is implied.</li>
+<li><strong>Rules engines are NOT AI.</strong> Preprogrammed rules.</li>
+</ol>
+
+<h3>Lean Six Sigma Traps</h3>
+<ol>
+<li><strong>Waste definition must be verbatim.</strong> "Anything other than the minimum amount of equipment, materials, parts, space, and worker's time which are absolutely essential to add value to the product."</li>
+<li><strong>The customer-pay test</strong> is the ultimate waste test: if customer won't pay extra (or choose your product), it's waste.</li>
+<li><strong>Lean = waste. Six Sigma = variability.</strong> Different targets.</li>
+<li><strong>Lean and Six Sigma are used IN TANDEM, NOT COMBINED.</strong></li>
+<li><strong>DOWNTIME</strong> — all 8 letters in order. Know "Employees Underutilized" isn't "Excess."</li>
+<li><strong>95% of lead time is non-value-added.</strong> Numeric fact.</li>
+<li><strong>DMAIC:</strong> Measure &amp; Analyze = NO active manipulation. Improve = START active manipulation.</li>
+<li><strong>VOC can be internal or external.</strong> (Another operation, community, buying org.)</li>
+<li><strong>99.9997% = 3.4 DPMO.</strong> Both numbers memorized.</li>
+<li><strong>3-sigma math:</strong> 30 components @ 99.75% → 92.77% work, 7.23% defective.</li>
+<li><strong>Takt Time formula</strong>: time available ÷ units demanded. DO NOT confuse with cycle time.</li>
+<li><strong>Cycle vs. Lead vs. Value-Added Time</strong> are distinct — know all three.</li>
+<li><strong>DMAIC "filters X's."</strong> Important X may have been discarded — use this if Improve shows no gains.</li>
+</ol>
+
+<h3>AI / RPA / Agentic Traps</h3>
+<ol>
+<li><strong>RPA ≠ AI.</strong> RPA uses rules engines.</li>
+<li><strong>"Automating tasks DOES NOT change the process."</strong> Said 4+ times.</li>
+<li><strong>Intelligent Automation = RPA + decision-making AI.</strong></li>
+<li><strong>7 AI Patterns are NOT MECE.</strong> Overlaps exist — don't say they're mutually exclusive.</li>
+<li><strong>GenAI inflection point = 2014</strong> (GAN invention).</li>
+<li><strong>GenAI creates new artifacts that DON'T repeat the training data</strong> but reflect its characteristics.</li>
+<li><strong>RAG</strong> = LLM references additional data <em>beyond</em> original training data.</li>
+<li><strong>Agentic AI</strong> keyword: "autonomously" / "little to no human intervention."</li>
+<li><strong>Machine Reengineering has TWO concepts</strong>, not one.</li>
+</ol>
+
+<h3>Service / Digital Traps</h3>
+<ol>
+<li><strong>Outside-In</strong> ≠ customer satisfaction surveys. It's a constant ask: what's changing, what do customers need, how can we solve better.</li>
+<li><strong>4 Customer Experience Transformation aspects:</strong> Outside-In Design · Increase Reach &amp; Engagement · Data-driven Experience · Seamless Physical-Digital Integration. Memorize.</li>
+<li><strong>Value-based innovation ≠ invention.</strong></li>
+<li><strong>Combinatorial Innovation:</strong> 90% of business model innovations merely combined/adapted previous patterns. Only 10% were net-new.</li>
+<li><strong>5 Digital Forces</strong> — spell correctly: Platformization, Globalization, Millennialization, Prosumerization, Virtualization.</li>
+<li><strong>Platform def must be verbatim:</strong> "An open architecture with a governance model designed to facilitate interactions."</li>
+<li><strong>Winner-Takes-All needs ALL 4 conditions.</strong> 3 aren't enough.</li>
+<li><strong>First-Mover Advantage is a MYTH.</strong> Huge trap — everyone's intuition says first wins.</li>
+<li><strong>Startup + advertising = bad idea</strong> (two reasons).</li>
+<li><strong>2 Critical Success Factors = Digital Capabilities + Leadership.</strong> Not three.</li>
+<li><strong>Change operational processes FIRST.</strong> Not customer experience first — Gimpel repeats: customers can SEE customer-experience changes but NOT operational changes, so operational changes are your moat.</li>
+<li><strong>Leadership MUST be top-down.</strong></li>
+<li><strong>Vision must be transformative, not incremental.</strong></li>
+<li><strong>3 Types of Digital Vision: customer experience, operational processes, business model.</strong></li>
+<li><strong>5 Business Model Reinvention Archetypes</strong> — the #1 most-emphasized list in Class 6. Repeated 7 times on slides.</li>
+</ol>
+
+</div>
+</details>
+
+<!-- ========== PRACTICE QUESTIONS ========== -->
+<details id="practice" open>
+<summary>🧠 Practice Quiz — 30 Questions Across All 6 Classes</summary>
+<div class="body">
+
+<p><em>Click "Show Answer" under each question to check. Answers reference slides verbatim.</em></p>
+
+<h3>BPMN (Class 1)</h3>
+<div class="q"><span class="qnum">Q1.</span> Why is a "Send Task" symbol filled in / darkened?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Because it is a <strong>throwing (sending)</strong> symbol. Throwing symbols are filled. Receiving (catching) symbols are NOT filled.</div></div>
+
+<div class="q"><span class="qnum">Q2.</span> Can a gateway decide which path to take based on new information it computes?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">No. <strong>Gateways do not make decisions or allow time to pass.</strong> They direct traffic. The preceding activity/data must have determined the answer. Gateway logic is "pure logic; result based on data previously obtained/analyzed."</div></div>
+
+<div class="q"><span class="qnum">Q3.</span> What is the only "future-looking" gateway?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">The <strong>Event-based gateway</strong>. "Events are in the future! It's the only future-looking gateway." Every path out has an event on it; gateway logic = whichever event happens first.</div></div>
+
+<div class="q"><span class="qnum">Q4.</span> What's the difference between a Standard Loop and a Multi-Instance Loop?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Standard Loop:</strong> same activity repeated until a condition becomes true; one instance at a time.<br>
+<strong>Multi-Instance Loop:</strong> multiple instances of the same activity run (parallel or sequential), once for each object in a collection.</div></div>
+
+<div class="q"><span class="qnum">Q5.</span> What's the difference between an interrupting and non-interrupting boundary event?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Interrupting:</strong> stop the current process, follow ONLY the exception flow.<br>
+<strong>Non-interrupting:</strong> keep the current process going AND ALSO follow the exception flow.</div></div>
+
+<div class="q"><span class="qnum">Q6.</span> Can a process use a message flow to "cross" between two swim lanes in the same pool?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">No. "Do not send messages within a pool!" Messages flow ONLY between pools. Within a pool, information is implied to be passed along.</div></div>
+
+<div class="q"><span class="qnum">Q7.</span> Which BPMN task is performed by a human WITHOUT the aid of any business process execution engine or application?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Manual Task.</strong> (A "User Task" is performed by a human <em>with</em> software assistance.)</div></div>
+
+<h3>Lean Six Sigma (Class 2)</h3>
+<div class="q"><span class="qnum">Q8.</span> State the verbatim definition of waste.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">"Anything other than the minimum amount of equipment, materials, parts, space, and worker's time which are absolutely essential to add value to the product."</div></div>
+
+<div class="q"><span class="qnum">Q9.</span> List the 8 DOWNTIME waste categories.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>D</strong>efects · <strong>O</strong>verproduction of work in process · <strong>W</strong>aiting · <strong>N</strong>on-value-added processing · <strong>T</strong>ransportation of materials &amp; equipment · <strong>I</strong>nventory excesses · <strong>M</strong>otion · <strong>E</strong>mployees underutilized.</div></div>
+
+<div class="q"><span class="qnum">Q10.</span> A coffee shop is open 30 minutes and sells 50 coffees. What is takt time?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Takt Time = Work Time Available ÷ Number of Units Sold = 1,800 seconds ÷ 50 = <strong>36.0 seconds per coffee</strong>.</div></div>
+
+<div class="q"><span class="qnum">Q11.</span> In DMAIC, which phases forbid active manipulation?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Measure</strong> (Rule #1: "No Active Manipulation") and <strong>Analyze</strong> (Rule #2: "Still No Active Manipulation"). Active manipulation begins in the <strong>Improve</strong> phase.</div></div>
+
+<div class="q"><span class="qnum">Q12.</span> What is the numerical goal of Six Sigma?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Align the voice of the customer with the voice of the process <strong>99.9997% of the time</strong> — no more than <strong>3.4 DPMO</strong> (defective parts per million opportunities).</div></div>
+
+<div class="q"><span class="qnum">Q13.</span> Push vs. Pull — define each.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Push:</strong> Produces product using forecasts or schedules, without regard for what is needed by the next operation.<br>
+<strong>Pull:</strong> A method of controlling the flow of resources based on exactly what is needed by the next operation.</div></div>
+
+<div class="q"><span class="qnum">Q14.</span> If a product has 30 components each at 3-sigma (99.75%) quality, what percent of final products work?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">(0.9975)<sup>30</sup> ≈ 0.9277 → <strong>92.77%</strong> work properly. About 7.23% are defective. This is why Six Sigma matters for complex products.</div></div>
+
+<div class="q"><span class="qnum">Q15.</span> Are Lean and Six Sigma "combined" into Lean Six Sigma?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">No. They should be <strong>used in tandem, NOT combined</strong>. Managers balance Lean and Six Sigma teams to promote collaboration.</div></div>
+
+<h3>AI / BPM / RPA (Classes 3 &amp; 4)</h3>
+<div class="q"><span class="qnum">Q16.</span> What are the 7 Rs of Process Innovation (Shapiro)?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Rethink · Reconfigure · Resequence · Relocate · Reduce · Reassign · Retool.</div></div>
+
+<div class="q"><span class="qnum">Q17.</span> Define RPA.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">RPA = Robotic Process Automation: use call activities or bots to perform automated tasks or series of tasks. Uses preprogrammed rules engines (NOT AI). Does NOT delegate critical thinking or decision making.</div></div>
+
+<div class="q"><span class="qnum">Q18.</span> What is Intelligent Automation?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Intelligent Automation = RPA with decision-making AI.</strong></div></div>
+
+<div class="q"><span class="qnum">Q19.</span> Explain how a GAN works.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Generative AI creates content. Another Generative AI tries to identify it as GenAI-created. A feedback loop between the two creates convincing content. (The introduction of GANs in 2014 was the generative-AI inflection point.)</div></div>
+
+<div class="q"><span class="qnum">Q20.</span> Why is RAG important for business applications of AI?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">RAG (Retrieval-Augmented Generation) lets an LLM reference additional data from a dataset <em>beyond</em> the original training data. That's how a general-purpose model can answer questions about your proprietary or recent data — essential for enterprise use.</div></div>
+
+<div class="q"><span class="qnum">Q21.</span> List the 5 key characteristics of Agentic AI.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">(1) Autonomy, (2) Adaptive Learning and Reasoning, (3) Language Understanding, (4) Workflow Optimization, (5) Multi-agent &amp; System Conversation.</div></div>
+
+<div class="q"><span class="qnum">Q22.</span> What are the two concepts behind Machine Reengineering?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">(1) Redesigning business processes so humans work with AI agents to improve effectiveness and/or efficiency. (2) AI acts as the business process engineer to optimize business processes.</div></div>
+
+<h3>Service Thinking / Value-Based Innovation (Class 5)</h3>
+<div class="q"><span class="qnum">Q23.</span> Define Outside-In Thinking.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Outside-In thinking focuses on solving customer problems <em>instead of focusing on internal operations</em>. It constantly asks: What do customers need? How and why are customers changing? What can we do to better solve their problems &amp; meet their emerging needs?</div></div>
+
+<div class="q"><span class="qnum">Q24.</span> What are the 4 required aspects of successful Customer Experience Transformation?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">(1) Outside-In Design, (2) Increase Reach &amp; Engagement, (3) Data-driven Experience, (4) Seamless Physical-Digital Integration.</div></div>
+
+<div class="q"><span class="qnum">Q25.</span> Define Value-Based Innovation and contrast it with invention.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Value-Based Innovation = creating a more compelling value proposition + finding a better way to solve the customer's PTBS. It is NOT invention — technologies and ideas may already exist; the innovation is in how they deliver more value. 90% of business model innovations are combinations of existing patterns.</div></div>
+
+<h3>Digital Transformation (Class 6)</h3>
+<div class="q"><span class="qnum">Q26.</span> Name and briefly describe the 5 Digital Forces.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>Globalization</strong> (fundamentally changes supply &amp; demand across geographies); <strong>Millennialization</strong> (customers distrust propaganda; ask friends/strangers; facilitates outside-in perspective); <strong>Prosumerization</strong> (inexpensive pro-grade tools lower market entry barriers); <strong>Virtualization</strong> (firms focus on core strengths, partner with others to execute non-core processes); <strong>Platformization</strong> (platforms are the gateway through which businesses reach customers).</div></div>
+
+<div class="q"><span class="qnum">Q27.</span> What 4 conditions must ALL be present for a Winner-Takes-All outcome?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">All 4 required: (1) High economies of scale, (2) Strong network effects, (3) Low demand for differentiated features, (4) High multi-homing costs.</div></div>
+
+<div class="q"><span class="qnum">Q28.</span> True or false: First-Mover Advantage guarantees winning in platform markets.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer"><strong>FALSE.</strong> "First Mover Advantage is a Myth." This is explicitly called out as counterintuitive in the slides.</div></div>
+
+<div class="q"><span class="qnum">Q29.</span> List the 5 Business Model Reinvention Archetypes.
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">(1) Reinvent Industries, (2) Substitute Products or Services, (3) Create New Digital Businesses, (4) Reconfigure Value Delivery, (5) Rethink Value Propositions.</div></div>
+
+<div class="q"><span class="qnum">Q30.</span> Why does Gimpel say to change operational processes FIRST in digital transformation?
+<button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Answer</button>
+<div class="answer">Operational-process change is (a) the foundation for future changes, and (b) hard to duplicate. Competitors can see how you transform the customer experience, but they cannot see how you transform your operations — so operational changes are your moat.</div></div>
+
+</div>
+</details>
+
+<div class="footer-note">
+Built from lecture slides for Classes 1–6, Mini-Lecture 1 (BPMN Basics), Mini-Lecture 2 (BPMN Gateways), and the CIS 8010 Spring 2026 Syllabus. Definitions preserved verbatim where Prof. Gimpel tests them word-for-word. Good luck, Monica.
+</div>
+
 </div>
 
 <script>
+// Simple client-side search across all details sections
 function filterContent(query) {
   const q = query.trim().toLowerCase();
-  document.querySelectorAll('details').forEach(section => {
-    const match = section.textContent.toLowerCase().includes(q);
-    section.classList.toggle('hidden', q && !match);
-    if (q && match) section.open = true;
+  const allDetails = document.querySelectorAll('details');
+
+  if (!q) {
+    // Reset — unhide everything
+    allDetails.forEach(d => {
+      d.classList.remove('hidden');
+      d.querySelectorAll('p, li, td, div, h2, h3, h4').forEach(el => {
+        el.classList.remove('hidden');
+        // restore original text (remove highlights)
+        if (el.dataset.orig) { el.innerHTML = el.dataset.orig; delete el.dataset.orig; }
+      });
+    });
+    return;
+  }
+
+  allDetails.forEach(d => {
+    const text = d.textContent.toLowerCase();
+    if (text.includes(q)) {
+      d.classList.remove('hidden');
+      d.open = true;
+    } else {
+      d.classList.add('hidden');
+    }
   });
 }
-function toggleAnswer(btn) {
-  const answer = btn.nextElementSibling;
-  answer.classList.toggle('show');
-  btn.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
-}
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-  });
-}
+
+// Allow 'Escape' to clear search
+document.getElementById('search').addEventListener('keydown', e => {
+  if (e.key === 'Escape') { e.target.value = ''; filterContent(''); }
+});
 </script>
 </body>
 </html>
