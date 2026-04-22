@@ -138,6 +138,18 @@ code, .kbd { background: #eee; padding: 1px 5px; border-radius: 3px; font-family
 .toggle-btn { background: #6a3b9a; color: #fff; border: none; padding: 4px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 6px; font-weight: 600; }
 .toggle-btn:hover { background: #4a2877; }
 .hidden { display: none !important; }
+.fib { background: #eaf5ec; border-left: 4px solid #2e7d32; padding: 12px 16px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+.fib .fibnum { font-weight: 700; color: #1b5e20; margin-right: 6px; }
+.fib-input { display: inline-block; min-width: 90px; padding: 2px 6px; margin: 0 2px; border: 1px solid #7cb342; border-radius: 3px; font-size: 14px; font-family: inherit; background: #fff; }
+.fib-input:focus { outline: none; border-color: #2e7d32; background: #fffde7; }
+.fib-input.correct { background: #c8e6c9; border-color: #2e7d32; font-weight: 600; }
+.fib-input.incorrect { background: #ffcdd2; border-color: #c62828; }
+.fib-btn { background: #2e7d32; color: #fff; border: none; padding: 4px 12px; font-size: 12px; border-radius: 3px; cursor: pointer; margin: 6px 4px 0 0; font-weight: 600; }
+.fib-btn:hover { background: #1b5e20; }
+.fib-btn.reveal { background: #6a3b9a; } .fib-btn.reveal:hover { background: #4a2877; }
+.fib-feedback { font-size: 13px; margin-top: 6px; font-weight: 600; }
+.fib-feedback.ok { color: #2e7d32; }
+.fib-feedback.no { color: #c62828; }
 .highlight { background: #fff700; padding: 1px 3px; border-radius: 2px; }
 .badge-reminder { display: inline-block; background: #d13915; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -171,6 +183,7 @@ hr.divider { border: none; border-top: 1px dashed #bbb; margin: 18px 0; }
 <a href="#c5">Class 5 — Service Thinking</a>
 <a href="#c6">Class 6 — Digital Transformation</a>
 <a href="#traps">⚠️ Master Trap List</a>
+<a href="#fib">✏️ Fill-in-the-Blank Drill</a>
 <a href="#practice">🧠 Practice Quiz</a>
 </div>
 
@@ -1194,6 +1207,248 @@ Why? (1) Advertising is a scale business — small user base = small $$$. (2) Go
 </div>
 </details>
 
+<!-- ========== FILL-IN-THE-BLANK DRILL ========== -->
+<details id="fib" open>
+<summary>✏️ Fill-in-the-Blank Drill — Verbatim Definitions</summary>
+<div class="body">
+<p>Type your answer in each blank, then click <strong>Check</strong>. Answers are matched case-insensitively with minor flexibility. Click <strong>Show Answer</strong> to reveal the exact wording from Gimpel's slides.</p>
+<p style="background:#fff3cd;border-left:4px solid #d69800;padding:8px 12px;font-size:14px;"><strong>Tip:</strong> Say the full sentence out loud before typing. Retrieval + speech beats re-reading every time.</p>
+
+<h3 style="color:#2c4e8a;">BPMN Element Identification <span class="pill">IDENTIFY EACH PART</span></h3>
+<p style="font-size:14px;color:#555;">For each BPMN element, name what it is. Use Gimpel's terminology.</p>
+
+<div class="fib"><span class="fibnum">BP1.</span> The outer rectangle/container that represents a single process, separately owned and independently running, is called a <input type="text" class="fib-input" data-answer="pool">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP2.</span> The horizontal subdivisions inside a pool (usually representing different roles, like "Receptionist" and "Physician") are called <input type="text" class="fib-input" data-answer="swim lanes">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP3.</span> A rounded rectangle representing work/action performed is an <input type="text" class="fib-input" data-answer="activity">. The smallest (atomic) unit of work — one that cannot be broken down further — is a <input type="text" class="fib-input" data-answer="task">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP4.</span> A rounded rectangle with a "+" marker inside (indicating it can be expanded) represents a <input type="text" class="fib-input" data-answer="sub-process"> — an activity that can be broken down into other tasks.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP5.</span> A circle represents an <input type="text" class="fib-input" data-answer="event"> — a signal (message) that something has happened.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP6.</span> A circle with a <strong>single thin</strong> border line is a <input type="text" class="fib-input" data-answer="start event">. A circle with a <strong>double</strong> border line is an <input type="text" class="fib-input" data-answer="intermediate event">. A circle with a <strong>thick/bold</strong> border line is an <input type="text" class="fib-input" data-answer="end event">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP7.</span> A diamond (rotated square) represents a <input type="text" class="fib-input" data-answer="gateway"> — it controls flow branching, merging, and parallel actions. It does NOT make decisions or allow time to pass; it simply <input type="text" class="fib-input" data-answer="directs traffic">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP8.</span> A diamond with an <strong>X</strong> inside is an <input type="text" class="fib-input" data-answer="XOR"> gateway (exactly ONE path taken).
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP9.</span> A diamond with a <strong>+</strong> inside is an <input type="text" class="fib-input" data-answer="AND"> gateway (a.k.a. <input type="text" class="fib-input" data-answer="parallel"> gateway). All paths are taken concurrently.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP10.</span> A diamond with an <strong>O</strong> inside is an <input type="text" class="fib-input" data-answer="OR"> gateway — each path is evaluated, and multiple (but at least one) may be taken concurrently.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP11.</span> A diamond with a pentagon inside, used when gateway logic is based on which event happens first, is an <input type="text" class="fib-input" data-answer="event"> gateway. It's the only "future-looking" gateway.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP12.</span> A diamond with an asterisk inside, used for combinations of OR / XOR / event gateway conditions, is a <input type="text" class="fib-input" data-answer="complex"> gateway (AKA the discriminator pattern gateway).
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP13.</span> A <strong>solid line with an arrow</strong> connecting objects within the same pool is a <input type="text" class="fib-input" data-answer="sequence flow"> — it represents <input type="text" class="fib-input" data-answer="orchestration">, the managed flow of control within a business process.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP14.</span> A <strong>dashed line</strong> with an arrow on one end and a small circle on the other, used BETWEEN pools, is a <input type="text" class="fib-input" data-answer="message flow"> — it represents <input type="text" class="fib-input" data-answer="choreography">, the coordination of messages between separate processes.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP15.</span> A dashed rectangle with a folded corner represents a <input type="text" class="fib-input" data-answer="data object"> — a piece of data used in a process but that goes away once the process is complete.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP16.</span> A cylinder/drum shape represents a <input type="text" class="fib-input" data-answer="data store"> — data stored in a database for long-term storage. An association line INTO it represents an <input type="text" class="fib-input" data-answer="update">; an association line OUT of it represents a <input type="text" class="fib-input" data-answer="query">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">BP17.</span> A thin <strong>dotted line</strong> (not dashed — no arrowhead) that connects a data object or text annotation to an activity/flow is an <input type="text" class="fib-input" data-answer="association"> line.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 1 — BPMN Rules &amp; Verbatim</h3>
+
+<div class="fib"><span class="fibnum">FB1.</span> Except for Start Events and End Events, every object in a BPMN model must have a process <input type="text" class="fib-input" data-answer="inflow"> and <input type="text" class="fib-input" data-answer="outflow">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB2.</span> Gateways do not <input type="text" class="fib-input" data-answer="make decisions"> or allow for <input type="text" class="fib-input" data-answer="time"> to pass. They simply <input type="text" class="fib-input" data-answer="direct traffic">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB3.</span> Gateways should be labeled as a <input type="text" class="fib-input" data-answer="question">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB4.</span> OR Gateways have a <input type="text" class="fib-input" data-answer="default"> flow that is enabled if (and only if) no other gateway is enabled.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB5.</span> <strong>Orchestration:</strong> The managed flow of <input type="text" class="fib-input" data-answer="control"> within a business process.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB6.</span> <strong>Choreography:</strong> Pattern of <input type="text" class="fib-input" data-answer="messages"> between separate, distinct processes (pools).
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 2 — Lean Six Sigma</h3>
+
+<div class="fib"><span class="fibnum">FB7.</span> DOWNTIME — the 8 wastes: <input type="text" class="fib-input" data-answer="defects">, <input type="text" class="fib-input" data-answer="overproduction">, <input type="text" class="fib-input" data-answer="waiting">, <input type="text" class="fib-input" data-answer="non-utilized talent">, <input type="text" class="fib-input" data-answer="transportation">, <input type="text" class="fib-input" data-answer="inventory">, <input type="text" class="fib-input" data-answer="motion">, <input type="text" class="fib-input" data-answer="excess processing">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB8.</span> DMAIC framework: <input type="text" class="fib-input" data-answer="define">, <input type="text" class="fib-input" data-answer="measure">, <input type="text" class="fib-input" data-answer="analyze">, <input type="text" class="fib-input" data-answer="improve">, <input type="text" class="fib-input" data-answer="control">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB9.</span> <strong>Takt Time</strong> = <input type="text" class="fib-input" data-answer="available time"> ÷ <input type="text" class="fib-input" data-answer="customer demand">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 3 — Digital BPM / AI</h3>
+
+<div class="fib"><span class="fibnum">FB10.</span> A <input type="text" class="fib-input" data-answer="GAN"> (Generative Adversarial Network) is the AI innovation from 2014 that uses two neural networks competing against each other — a <input type="text" class="fib-input" data-answer="generator"> and a <input type="text" class="fib-input" data-answer="discriminator">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB11.</span> <strong>RAG</strong> stands for <input type="text" class="fib-input" data-answer="retrieval-augmented generation">. It grounds generative AI in an authoritative, up-to-date knowledge base to reduce hallucinations.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 4 — Agentic AI</h3>
+
+<div class="fib"><span class="fibnum">FB12.</span> Agentic AI has 5 characteristics: <input type="text" class="fib-input" data-answer="autonomous">, <input type="text" class="fib-input" data-answer="goal-oriented">, <input type="text" class="fib-input" data-answer="adaptive">, <input type="text" class="fib-input" data-answer="interactive">, <input type="text" class="fib-input" data-answer="proactive">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 5 — Service Thinking</h3>
+
+<div class="fib"><span class="fibnum">FB13.</span> Outside-In thinking focuses on solving <input type="text" class="fib-input" data-answer="customer problems"> instead of focusing on <input type="text" class="fib-input" data-answer="internal operations">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB14.</span> You don't get paid for what you <input type="text" class="fib-input" data-answer="do">. You get paid for the <input type="text" class="fib-input" data-answer="value"> you create.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB15.</span> <strong>PTBS</strong> = <input type="text" class="fib-input" data-answer="problem to be solved">. It is the elemental/core reason a service is valuable to the consumer, and is often <em>not</em> an <input type="text" class="fib-input" data-answer="obvious"> or surface-level reason.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB16.</span> The 3 questions of Service Thinking: (1) What is the <input type="text" class="fib-input" data-answer="problem to be solved">? (2) What is the <input type="text" class="fib-input" data-answer="service interface">? (3) What are proper measures of <input type="text" class="fib-input" data-answer="service quality">?
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<h3 style="color:#2c4e8a;">Class 6 — Digital Transformation <span class="pill">⭐ HIGHEST YIELD</span></h3>
+
+<div class="fib"><span class="fibnum">FB17.</span> The 5 Digital Forces: <input type="text" class="fib-input" data-answer="globalization">, <input type="text" class="fib-input" data-answer="millennialization">, <input type="text" class="fib-input" data-answer="prosumerization">, <input type="text" class="fib-input" data-answer="virtualization">, <input type="text" class="fib-input" data-answer="platformization">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB18.</span> <strong>Prosumer</strong> means something is <input type="text" class="fib-input" data-answer="inexpensive">, <input type="text" class="fib-input" data-answer="easy to use">, and produces <input type="text" class="fib-input" data-answer="professional-grade results">. All three required.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB19.</span> The two critical success factors for a digital transformation are digital <input type="text" class="fib-input" data-answer="capabilities"> and digital <input type="text" class="fib-input" data-answer="leadership">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB20.</span> The 4 conditions for Winner-Takes-All (all must be present): high <input type="text" class="fib-input" data-answer="economies of scale">, strong <input type="text" class="fib-input" data-answer="network effects">, low demand for <input type="text" class="fib-input" data-answer="differentiated features">, and high <input type="text" class="fib-input" data-answer="multi-homing costs">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB21.</span> 4 ways platforms make money: transaction <input type="text" class="fib-input" data-answer="cut">, charge for <input type="text" class="fib-input" data-answer="access">, charge for <input type="text" class="fib-input" data-answer="tools">, charge for <input type="text" class="fib-input" data-answer="attention">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB22.</span> 4 characteristics of industries ready to platformize: (1) high proportion of value from <input type="text" class="fib-input" data-answer="information">, (2) highly <input type="text" class="fib-input" data-answer="fragmented">, (3) simple <input type="text" class="fib-input" data-answer="modular"> products/services, (4) <input type="text" class="fib-input" data-answer="spare capacity"> in the marketplace.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB23.</span> Competitors can see how you transform the <input type="text" class="fib-input" data-answer="customer experience">, but they can't see how you transform the <input type="text" class="fib-input" data-answer="operations">. That's why you change operational processes <input type="text" class="fib-input" data-answer="first">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB24.</span> The 3 types of Digital Vision: (1) reinvent <input type="text" class="fib-input" data-answer="customer experience">, (2) reinvent <input type="text" class="fib-input" data-answer="operational processes">, (3) <input type="text" class="fib-input" data-answer="both">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<div class="fib"><span class="fibnum">FB25.</span> The 5 Business Model Reinvention Archetypes: reinvent <input type="text" class="fib-input" data-answer="industries">, <input type="text" class="fib-input" data-answer="substitute"> products or services, create new <input type="text" class="fib-input" data-answer="digital businesses">, <input type="text" class="fib-input" data-answer="reconfigure"> value delivery, rethink <input type="text" class="fib-input" data-answer="value propositions">.
+<button class="fib-btn" onclick="checkFib(this)">Check</button>
+<button class="fib-btn reveal" onclick="revealFib(this)">Show Answer</button>
+<div class="fib-feedback"></div></div>
+
+<hr class="divider">
+<p style="text-align:center;">
+<button class="fib-btn" style="font-size:14px;padding:8px 18px;" onclick="checkAllFib()">Check All Answers</button>
+<button class="fib-btn reveal" style="font-size:14px;padding:8px 18px;" onclick="resetAllFib()">Reset All</button>
+</p>
+<div id="fib-score" style="text-align:center;font-size:16px;font-weight:700;margin-top:10px;"></div>
+
+</div>
+</details>
+
 <!-- ========== PRACTICE QUESTIONS ========== -->
 <details id="practice" open>
 <summary>🧠 Practice Quiz — 30 Questions Across All 6 Classes</summary>
@@ -1372,6 +1627,75 @@ function filterContent(query) {
 document.getElementById('search').addEventListener('keydown', e => {
   if (e.key === 'Escape') { e.target.value = ''; filterContent(''); }
 });
+
+// Fill-in-the-blank logic
+function normalize(s) {
+  return (s || '').toLowerCase().trim()
+    .replace(/[‐‑‒–—]/g, '-')  // normalize dashes
+    .replace(/\s+/g, ' ')
+    .replace(/[.,;:!?"']/g, '');
+}
+function checkOne(input) {
+  const user = normalize(input.value);
+  const expected = normalize(input.dataset.answer);
+  if (!user) { input.classList.remove('correct', 'incorrect'); return null; }
+  // Accept exact match OR user contains expected OR expected contains user (for short answers)
+  const ok = user === expected || user.includes(expected) || (expected.length > 5 && expected.includes(user) && user.length >= expected.length - 3);
+  input.classList.toggle('correct', ok);
+  input.classList.toggle('incorrect', !ok);
+  return ok;
+}
+function checkFib(btn) {
+  const fib = btn.closest('.fib');
+  const inputs = fib.querySelectorAll('.fib-input');
+  const feedback = fib.querySelector('.fib-feedback');
+  let correct = 0, total = 0, blank = 0;
+  inputs.forEach(i => {
+    if (!i.value.trim()) { blank++; i.classList.remove('correct', 'incorrect'); return; }
+    total++;
+    if (checkOne(i)) correct++;
+  });
+  if (total === 0) { feedback.textContent = 'Type an answer first.'; feedback.className = 'fib-feedback no'; return; }
+  if (correct === inputs.length) { feedback.textContent = '✓ All correct!'; feedback.className = 'fib-feedback ok'; }
+  else { feedback.textContent = `${correct} / ${inputs.length} correct` + (blank > 0 ? ` (${blank} left blank)` : ''); feedback.className = 'fib-feedback no'; }
+}
+function revealFib(btn) {
+  const fib = btn.closest('.fib');
+  fib.querySelectorAll('.fib-input').forEach(i => {
+    i.value = i.dataset.answer;
+    i.classList.add('correct');
+    i.classList.remove('incorrect');
+  });
+  const feedback = fib.querySelector('.fib-feedback');
+  feedback.textContent = 'Answer revealed. Re-type from memory on your next pass.';
+  feedback.className = 'fib-feedback ok';
+}
+function checkAllFib() {
+  const fibs = document.querySelectorAll('#fib .fib');
+  let totalInputs = 0, correctInputs = 0, attemptedQs = 0, perfectQs = 0;
+  fibs.forEach(fib => {
+    const inputs = fib.querySelectorAll('.fib-input');
+    let qCorrect = 0, qFilled = 0;
+    inputs.forEach(i => {
+      if (i.value.trim()) {
+        qFilled++;
+        totalInputs++;
+        if (checkOne(i)) { correctInputs++; qCorrect++; }
+      }
+    });
+    if (qFilled > 0) attemptedQs++;
+    if (qCorrect === inputs.length && inputs.length > 0) perfectQs++;
+  });
+  const score = document.getElementById('fib-score');
+  score.innerHTML = `Attempted <strong>${attemptedQs}</strong> / ${fibs.length} questions &nbsp;·&nbsp; ` +
+    `Blanks correct: <strong>${correctInputs}</strong> / ${totalInputs} &nbsp;·&nbsp; ` +
+    `Perfect questions: <strong style="color:#2e7d32;">${perfectQs}</strong>`;
+}
+function resetAllFib() {
+  document.querySelectorAll('#fib .fib-input').forEach(i => { i.value = ''; i.classList.remove('correct', 'incorrect'); });
+  document.querySelectorAll('#fib .fib-feedback').forEach(f => { f.textContent = ''; f.className = 'fib-feedback'; });
+  document.getElementById('fib-score').textContent = '';
+}
 </script>
 </body>
 </html>
