@@ -1,0 +1,14 @@
+{
+  "name": "CIS 8010 Study Guide",
+  "short_name": "Study Guide",
+  "start_url": "./study_guide.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fafaf7",
+  "theme_color": "#2c4e8a",
+  "description": "Installable offline study guide for CIS 8010 cumulative exam review.",
+  "icons": [
+    {"src": "./icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any"},
+    {"src": "./icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}

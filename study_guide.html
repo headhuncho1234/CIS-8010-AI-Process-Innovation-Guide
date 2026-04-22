@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIS 8010 Cumulative Exam Study Guide - Prof. Gimpel, GSU</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#2c4e8a">
+<link rel="icon" href="./icon-192.svg" type="image/svg+xml">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #fafaf7; color: #1a1a1a; line-height: 1.55; margin: 0; padding: 0 16px 80px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+header { padding: 28px 0 16px; border-bottom: 2px solid #111; margin-bottom: 16px; }
+h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+.sub { color: #555; font-size: 14px; }
+.toc { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin: 16px 0 20px; font-size: 14px; }
+.toc a { display: inline-block; margin: 2px 10px 2px 0; color: #0b5fb0; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+#search { width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid #bbb; border-radius: 6px; margin-bottom: 12px; background: #fff; }
+details { background: #fff; border: 1px solid #d8d8d0; border-radius: 10px; margin: 14px 0; padding: 0; overflow: hidden; }
+details[open] { border-color: #2c4e8a; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+summary { padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; background: #f0efe8; border-bottom: 1px solid transparent; user-select: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; display: inline-block; margin-right: 10px; font-size: 11px; transition: transform 0.15s ease; color: #2c4e8a; }
+details[open] summary::before { transform: rotate(90deg); }
+details[open] summary { border-bottom: 1px solid #d8d8d0; background: #e8ecf5; }
+.body { padding: 18px 22px 22px; }
+h2 { font-size: 20px; margin: 24px 0 8px; color: #2c4e8a; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+h3 { font-size: 16px; margin: 18px 0 6px; color: #1a1a1a; }
+h4 { font-size: 14px; margin: 14px 0 4px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 8px 0; }
+ul, ol { margin: 6px 0 10px; padding-left: 22px; }
+li { margin: 3px 0; }
+.def { background: #f7f4e8; border-left: 4px solid #b58900; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 15px; }
+.def .term { font-weight: 700; color: #704600; }
+.verbatim { background: #fff9e6; border-left: 4px solid #e0a800; padding: 10px 14px; margin: 10px 0; font-style: italic; border-radius: 0 6px 6px 0; }
+.trap { background: #ffe8e0; border: 1px solid #ff5722; border-left: 6px solid #d13915; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+.trap .label { display: inline-block; background: #d13915; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.repeated { background: #eef6ff; border-left: 4px solid #1976d2; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+.repeated .label { display: inline-block; background: #1976d2; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-right: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.cram { background: #fff3d6; border: 2px solid #d69800; border-radius: 10px; padding: 18px 22px; margin: 10px 0 22px; }
+.cram h2 { color: #704600; border-bottom: 1px solid #d69800; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+th, td { padding: 8px 10px; border: 1px solid #d8d8d0; text-align: left; vertical-align: top; }
+th { background: #f0efe8; font-weight: 600; }
+.flash { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin: 10px 0; border: 1px solid #d8d8d0; border-radius: 6px; overflow: hidden; }
+.flash div { padding: 10px 14px; }
+.flash div:first-child { background: #f0efe8; font-weight: 600; border-right: 1px solid #d8d8d0; }
+code, .kbd { background: #eee; padding: 1px 5px; border-radius: 3px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 13px; }
+.formula { background: #f2f7f2; border-left: 4px solid #388e3c; padding: 10px 14px; margin: 10px 0; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 14px; border-radius: 0 6px 6px 0; }
+.pill { display: inline-block; background: #2c4e8a; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; letter-spacing: 0.04em; }
+.pill.pq { background: #6a3b9a; }
+.q { background: #f3f0f7; border-left: 4px solid #6a3b9a; padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+.q .qnum { font-weight: 700; color: #4a2877; margin-right: 6px; }
+.answer { font-size: 13px; color: #555; margin-top: 6px; display: none; }
+.answer.show { display: block; }
+.toggle-btn { background: #6a3b9a; color: #fff; border: none; padding: 4px 10px; font-size: 11px; border-radius: 3px; cursor: pointer; margin-top: 6px; font-weight: 600; }
+.toggle-btn:hover { background: #4a2877; }
+.hidden { display: none !important; }
+.highlight { background: #fff700; padding: 1px 3px; border-radius: 2px; }
+.badge-reminder { display: inline-block; background: #d13915; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+hr.divider { border: none; border-top: 1px dashed #bbb; margin: 18px 0; }
+.footer-note { color: #777; font-size: 12px; text-align: center; margin-top: 30px; padding-top: 12px; border-top: 1px solid #eee; }
+.install-note { margin: 12px 0 0; font-size: 13px; color: #555; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>CIS 8010 AI Process Innovation</h1>
+<div class="sub">Cumulative Exam Study Guide — Prof. Gregory Gimpel — Georgia State University<br><strong>Note:</strong> Gimpel tests definitions verbatim. Legend: <span class="badge-reminder">EXAM TRAP</span> <span class="pill">REPEATED</span> <span class="pill pq">PRACTICE Q</span></div>
+<p class="install-note">This version is packaged as a PWA, so it can be installed to your phone home screen and opened offline after the first load.</p>
+</header>
+<input type="text" id="search" placeholder="Search any term, concept, or acronym (e.g., DMAIC, boundary event, platform...)" oninput="filterContent(this.value)">
+<div class="toc"><strong>Jump to:</strong> <a href="#cram">One-Page Cram Sheet</a> <a href="#c1">Class 1 BPMN</a> <a href="#c2">Class 2 Lean Six Sigma</a> <a href="#c3">Class 3 BPM RPA AI</a> <a href="#c4">Class 4 Agentic AI IPA</a> <a href="#c5">Class 5 Service Thinking</a> <a href="#c6">Class 6 Digital Transformation</a> <a href="#traps">Master Trap List</a> <a href="#practice">Practice Quiz</a></div>
+<section id="cram" class="cram"><h2 style="margin-top:0">One-Page Cram Sheet — The Highest-Yield 20</h2><p style="margin-top:0"><strong>Read this twice the morning of the exam.</strong> If you only have 20 minutes, you have this.</p></section>
+<div class="footer-note">Installable PWA package generated for offline study use.</div>
+</div>
+<script>
+function filterContent(query) {
+  const q = query.trim().toLowerCase();
+  const allDetails = document.querySelectorAll('details');
+  if (!q) {
+    document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
+    allDetails.forEach(d => d.classList.remove('hidden'));
+    return;
+  }
+  allDetails.forEach(d => {
+    const text = d.textContent.toLowerCase();
+    if (text.includes(q)) {
+      d.classList.remove('hidden');
+      d.open = true;
+    } else {
+      d.classList.add('hidden');
+    }
+  });
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
